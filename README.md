@@ -17,5 +17,12 @@ Food-Finder is a platform that will lep users discover and explore local restaur
 - There will also be sections highlighting trending restaurants, special offers to catch the user's attention
 - A Search bar for the user to lookup restaurants by name
 
+# Login Page
+- Provides user with the ability to login to their accounts or register for a new account if they haven't already done so
+- Users will be prompted to enter thier email address and password to login
+- The login page will have validation to make sure the email address is in the correct format and that the password meets any specified requirements
+- Once logged in the users will be able to use all of the tools
+
+
 
 
