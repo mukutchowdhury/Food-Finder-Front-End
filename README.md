@@ -23,6 +23,8 @@ Food-Finder is a platform that will lep users discover and explore local restaur
 - The login page will have validation to make sure the email address is in the correct format and that the password meets any specified requirements
 - Once logged in the users will be able to use all of the tools
 
+(We will add more features throughout the semester here)
+
 
 
 
