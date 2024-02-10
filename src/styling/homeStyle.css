@@ -1,0 +1,149 @@
+
+.base-background {
+    height: 100vh;
+    width: 100%;
+}
+
+
+.navigation-bar {
+    height: 10vh;
+    width: 100%;
+
+    background-color: #1c1c1c;
+}
+
+
+.height-indent {
+    height: 5vh;
+    width: 100%;
+
+    background-color: white;
+}
+
+
+.body-background {
+    position: relative;
+
+    height: 70vh;
+    width: 100%;
+
+    background-color: rgb(209, 209, 209);
+
+    background-image: url('../home-background-2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+
+.body-background--text-handler {
+    position: relative;
+}
+
+
+.body-background--text {
+    position: absolute;
+    
+    color: white;
+    font-size: 10rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+
+    bottom: 0;
+}
+
+
+.body-background--login-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.login-options {
+    height: 100%;
+    width: 75%;
+
+    background-color: rgba(0, 0, 0, 0.47);
+
+
+    display: grid;
+    grid-template-rows: 50% 50%;
+}
+
+
+.login-options--body1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+
+.login-options--box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+
+.login-options--text1 {
+    height: auto;
+    width: auto;
+
+    color: white;
+    font-size: 5rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+
+.login-options--text2 {
+    color: white;
+    font-size: 2rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+}
+
+
+.login-options--body2 {
+    display: flex;
+    justify-content: center;
+    align-items: first baseline;
+}
+
+
+.login-options--button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 10px 20px;
+    background-color: white; 
+    color: #333333; 
+    font-family: Arial, sans-serif; 
+    font-size: 16px; 
+    text-align: center;
+    text-decoration: none; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+}
+
+.login-options--button:hover {
+    background-color: #333333; 
+    color: white; 
+    border-color: white; 
+}
+
+
+.second-background-body {
+    height: 20vh;
+    width: 100%;
+
+    background-color: #1c1c1c;
+}
