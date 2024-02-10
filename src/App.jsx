@@ -4,7 +4,9 @@ function App() {
 
   return (
     <>
-      <h1>Fooder-Finder FrontEnd</h1>
+      <div>
+        
+      </div>
     </>
   )
 }
