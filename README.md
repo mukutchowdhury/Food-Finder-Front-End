@@ -1,6 +1,7 @@
 # Food-Finder-Front-End
 
 
-Requirements
+# Requirements
 
-Creating the list of Restaurants
+# Creating the list of Restaurants
+
