@@ -9,10 +9,10 @@ import mainimage from '../assets/bg-motor.png';
 function HomeView() {
     return (
         <>
-           <div className='h-screen w-full relative overflow-y-hidden'>
+            <div className='h-[80vh] w-full relative'>
                 <div className='h-[10vh] w-full bg-green-600'>
                     <div className='h-full w-full flex justify-between items-center'>
-                        <div className='h-full w-64 flex justify-start items-center'>
+                        <div className='h-full w-[17rem] flex justify-start items-center'>
                             <div className='w-[6rem] h-full mx-8'>
                                 {/* <img className='h-full w-full object-center object-cover' src={logoimage} alt='logo'/> */}
                             </div>
@@ -40,13 +40,14 @@ function HomeView() {
                         </div>
                     </div>
                 </div>
-                <div className=' h-1/2 w-full bg-green-600 flex justify-center items-start shadow shadow-black'>
-                    <span className='text-9xl font-bold text-white mt-10'>Food Finder</span>
-                </div>
-                <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[40%]'>
-                    <img src={mainimage} alt="food png image" />
+                <div className='h-1/3 w-full bg-green-600 flex justify-center items-center shadow shadow-black'>
+                    <span className='text-9xl font-bold text-white'>Food Finder</span>
                 </div>
             </div>
+            <div className='absolute top-1/2 left-1/2 transform -translate-x-[40%] -translate-y-[40%]'>
+                <img className='w-5/6 h-5/6' src={mainimage} alt="food png image" />
+            </div>
+            <div className='h-[20vh] w-full bg-green-600'></div>
         </>
     );
 }
