@@ -20,7 +20,7 @@ function Navbar() {
     return (
         <nav>
             <ul>
-                {PAGES.map(mapper)} 
+                {PAGES.map(mapper)}
             </ul>
         </nav>
     )
