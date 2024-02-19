@@ -62,6 +62,16 @@ function HomeView() {
                     <button className='bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700'>View Details</button>
                 </div>
             </div>
+
+            {/* Footer */}
+            <div className='h-16 bg-green-600 flex items-center justify-center'>
+                <div className='text-white flex gap-4'>
+                    <a href='/about-us'>About Us</a>
+                    <a href='/contact'>Contact</a>
+                    <a href='/privacy-policy'>Privacy Policy</a>
+                    <a href='/terms-of-service'>Terms of Service</a>
+                </div>
+            </div>
         </>
     );
 }
