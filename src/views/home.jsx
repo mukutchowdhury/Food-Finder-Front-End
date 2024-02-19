@@ -32,12 +32,12 @@ function HomeView() {
                             </form>
                         </div>
                         <div className='h-full flex justify-between items-center mx-8 gap-5'>
-                            <button className="bg-green-700 hover:bg-green-800 text-white text-lg font-semibold py-2 px-4 rounded flex justify-center cursor-pointer">
+                            <button type= "submit" className="bg-green-700 hover:bg-green-800 text-white text-lg font-semibold py-2 px-4 rounded flex justify-center cursor-pointer">
                                 Login
                             </button>
-                            <button className="bg-green-700 hover:bg-green-800 text-white text-lg font-semibold py-2 px-4 rounded flex justify-center cursor-pointer">
+                            <button type="Submit" className="bg-green-700 hover:bg-green-800 text-white text-lg font-semibold py-2 px-4 rounded flex justify-center cursor-pointer">
                                 Sign Up
-                            </button>
+                            </button> 
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ function HomeView() {
             </div>
 
             {/* Footer */}
-            <div className='h-16 bg-green-600 flex items-center justify-center'>
+            <div className='h-16 bg-green-700 flex items-center justify-center'>
                 <div className='text-white flex gap-4'>
                     <a href='/about-us'>About Us</a>
                     <a href='/contact'>Contact</a>

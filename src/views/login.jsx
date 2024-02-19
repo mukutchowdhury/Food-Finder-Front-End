@@ -46,7 +46,17 @@ function LoginView() {
                     <p>- Drake</p>
                 </div>
             </div>
+            {/* Footer */}
+            <div className='h-16 bg-green-700 flex items-center justify-center'>
+                <div className='text-white flex gap-4'>
+                    <a href='/about-us'>About Us</a>
+                    <a href='/contact'>Contact</a>
+                    <a href='/privacy-policy'>Privacy Policy</a>
+                    <a href='/terms-of-service'>Terms of Service</a>
+                </div>
+            </div>
         </div>
+        
     );
 }
 
