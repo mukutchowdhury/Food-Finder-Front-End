@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '../styling/homeStyle.css';
 
 import mainimage from '../assets/bg-motor.png';
+import iconimage from '../assets/magnifying-glass-icon.png';
 import restaurant_image from '../assets/restaurant_pic.jpg';
 
 function HomeView() {
@@ -41,8 +42,11 @@ function HomeView() {
                     </div>
                 </div>
                 <div className='h-1/3 w-full bg-green-600 flex justify-center items-center shadow shadow-black'>
-                    <span className='text-9xl font-bold text-white'>Food Finder</span>
+                    <span className='text-9xl font-bold text-black'>Food Finder</span>
                 </div>
+                <div className='absolute top-1/2 left-1/2 transform -translate-x-[-170%] -translate-y-[130%]'>
+                <img className='w-5/6 h-5/6' src={iconimage} alt="food png image" />
+            </div>
             </div>
             <div className='absolute top-1/2 left-1/2 transform -translate-x-[40%] -translate-y-[40%]'>
                 <img className='w-5/6 h-5/6' src={mainimage} alt="food png image" />
