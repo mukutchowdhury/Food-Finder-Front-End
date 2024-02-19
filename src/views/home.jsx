@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '../styling/homeStyle.css';
 
 import mainimage from '../assets/bg-motor.png';
+import restaurant_image from '../assets/restaurant_pic.jpg';
 
 function HomeView() {
     return (
@@ -47,6 +48,20 @@ function HomeView() {
                 <img className='w-5/6 h-5/6' src={mainimage} alt="food png image" />
             </div>
             <div className='h-[20vh] w-full bg-green-600'></div>
+
+            <div className='h-[20vh] w-full bg-green-600 flex justify-center items-center'>
+                <span className='text-3xl font-bold text-white'>Featured Restaurants & Deals</span>
+            </div>
+
+            <div className='grid grid-cols-3 gap-8 p-8'>
+                {/* Featured Restaurant 1 */}
+                <div className='bg-white p-4 rounded shadow'>
+                    <img className='w-full h-32 object-cover mb-4 rounded' src={restaurant_image} alt='Featured Restaurant 1' />
+                    <h3 className='text-lg font-semibold mb-2'>Terrific tacos</h3>
+                    <p className='text-gray-600 mb-4'>Come for some spicy authentic Mexican tacos!</p>
+                    <button className='bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700'>View Details</button>
+                </div>
+            </div>
         </>
     );
 }
