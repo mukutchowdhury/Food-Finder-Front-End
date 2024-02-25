@@ -56,3 +56,15 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    margin-top: 20px;
+}
+
+.signup-footer {
+    margin-top: auto; /* Push the footer to the bottom of the container */
+}
+
