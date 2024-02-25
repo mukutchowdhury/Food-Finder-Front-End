@@ -1,18 +1,35 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from 'react-router-dom';
-
-import './App.css'
-
-import Navbar from './Components/Navbar';
+import { useState } from 'react'
+import axios from 'axios';
+import CategoryCard from './Components/CategoryCard'
+import Navigation from './Components/Navigation';
 
 function App() {
 
+  const [restaurantData, setRestaurantData] = useState(null);
+
+  const fetchRestaurantData = async (zipcode) => {
+    try {
+      if (zipcode.length === 0) {
+        const response = await axios.get('http://127.0.0.1:8000/restaurant/all');
+        setRestaurantData(response.data)
+      } else {
+        setRestaurantData(null)
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <>
-      <h1>Fooder-Finder FrontEnd</h1>
+      <Navigation callback={fetchRestaurantData} />
+      <div className='relative z-0 box-border'>
+        <div className='max-w-[1280px] mx-auto box-border'>
+          {restaurantData !== null && (
+            <CategoryCard categoryName='Most popular local restaurants' restaurantList={restaurantData}/>
+          )}
+        </div>
+      </div>
     </>
   )
 }
