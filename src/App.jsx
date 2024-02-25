@@ -16,7 +16,8 @@ function App() {
         const response = await axios.get(`${BACKEND_URL}/restaurant/all`);
         setRestaurantData(response.data)
       } else {
-        setRestaurantData(null)
+        const response = await axios.get(`${BACKEND_URL}/restaurants/by-zipcode/${zipcode}`);
+        setRestaurantData(response.data)
       }
     } catch (error) {
       console.error(error);
