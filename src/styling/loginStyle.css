@@ -73,27 +73,13 @@ input[type="password"] {
     text-decoration: underline;
 }
 
-.testimonial-container {
-    margin-left: 40px;
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 20px;
 }
 
-.testimonial {
-    padding: 20px;
-    opacity: 0.7;
-    border-radius: 10px;
-    background-color: #A4C639;
-    box-shadow: 0px 0px 10px rgba(63, 102, 78, 0.1);
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.testimonial p {
-    margin-bottom: 10px;
-    color: #333333;
-}
-
-.testimonial h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: #007bff;
+.signup-footer {
+    margin-top: auto; 
 }

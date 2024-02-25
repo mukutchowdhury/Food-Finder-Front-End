@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '../styling/homeStyle.css';
 
 import mainimage from '../assets/bg-motor.png';
+import couponImage from '../assets/coupon.jpg';
 import iconimage from '../assets/magnifying-glass-icon.png';
 import restaurant_image from '../assets/restaurant_pic.jpg';
-import couponImage from '../assets/coupon.jpg';
 
 
 function HomeView() {
@@ -86,6 +86,31 @@ function HomeView() {
                     <a href='/contact'>Contact</a>
                     <a href='/privacy-policy'>Privacy Policy</a>
                     <a href='/terms-of-service'>Terms of Service</a>
+                </div>
+            </div>
+            
+            {/* Right side content */}
+            <div className="testimonial-container">
+                <h2>Testimonials</h2>
+                <div className="testimonial">
+                    <p>"Great food options on a low budget!"</p>
+                    <p>- Jose Caledron</p>
+                </div>
+                <div className="testimonial">
+                    <p>"An upgrade over UberEats fosho!!!"</p>
+                    <p>- Mike Mcquire</p>
+                </div>
+                <div className="testimonial">
+                    <p>"I'm impressed by the speed and reliability of this platform. It's been a game-changer for me."</p>
+                    <p>- Steve Parson</p>
+                </div>
+                <div className="testimonial">
+                    <p>This platform has made my life so much easier. I can't imagine working without it now.</p>
+                    <p>- John Adam</p>
+                </div>
+                <div className="testimonial">
+                    <p>""I've tried many similar platforms, but this one stands out for its simplicity and effectiveness."</p>
+                    <p>- Drake</p>
                 </div>
             </div>
         </>
