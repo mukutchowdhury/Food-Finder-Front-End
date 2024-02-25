@@ -4,7 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import '../styling/homeStyle.css';
 
 import mainimage from '../assets/bg-motor.png';
+import iconimage from '../assets/magnifying-glass-icon.png';
 import restaurant_image from '../assets/restaurant_pic.jpg';
+import couponImage from '../assets/coupon.jpg';
+
 
 function HomeView() {
     return (
@@ -31,18 +34,21 @@ function HomeView() {
                             </form>
                         </div>
                         <div className='h-full flex justify-between items-center mx-8 gap-5'>
-                            <button className="bg-green-700 hover:bg-green-800 text-white text-lg font-semibold py-2 px-4 rounded flex justify-center cursor-pointer">
+                            <button type= "submit" className="bg-green-700 hover:bg-green-800 text-white text-lg font-semibold py-2 px-4 rounded flex justify-center cursor-pointer">
                                 Login
                             </button>
-                            <button className="bg-green-700 hover:bg-green-800 text-white text-lg font-semibold py-2 px-4 rounded flex justify-center cursor-pointer">
+                            <button type="Submit" className="bg-green-700 hover:bg-green-800 text-white text-lg font-semibold py-2 px-4 rounded flex justify-center cursor-pointer">
                                 Sign Up
-                            </button>
+                            </button> 
                         </div>
                     </div>
                 </div>
                 <div className='h-1/3 w-full bg-green-600 flex justify-center items-center shadow shadow-black'>
-                    <span className='text-9xl font-bold text-white'>Food Finder</span>
+                    <span className='text-9xl font-bold text-black'>Food Finder</span>
                 </div>
+                <div className='absolute top-1/2 left-1/2 transform -translate-x-[-170%] -translate-y-[130%]'>
+                <img className='w-5/6 h-5/6' src={iconimage} alt="food png image" />
+            </div>
             </div>
             <div className='absolute top-1/2 left-1/2 transform -translate-x-[40%] -translate-y-[40%]'>
                 <img className='w-5/6 h-5/6' src={mainimage} alt="food png image" />
@@ -57,14 +63,24 @@ function HomeView() {
                 {/* Featured Restaurant 1 */}
                 <div className='bg-white p-4 rounded shadow'>
                     <img className='w-full h-32 object-cover mb-4 rounded' src={restaurant_image} alt='Featured Restaurant 1' />
-                    <h3 className='text-lg font-semibold mb-2'>Terrific tacos</h3>
+                    <h3 className='text-lg font-semibold mb-2'>Terrific Tacos</h3>
                     <p className='text-gray-600 mb-4'>Come for some spicy authentic Mexican tacos!</p>
                     <button className='bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700'>View Details</button>
                 </div>
             </div>
 
+            <div className='grid grid-cols-3 gap-8 p-8'>
+                {/* Featured Deal */}
+                <div className='bg-white p-4 rounded shadow'>
+                    <img className='w-full h-32 object-cover mb-4 rounded' src={couponImage} alt='Featured Restaurant 1' />
+                    <h3 className='text-lg font-semibold mb-2'> 20% off at Terrific Tacos</h3>
+                    <p className='text-gray-600 mb-4'>Enjoy some meals and deals!</p>
+                    <button className='bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700'>Save Now</button>
+                </div>
+            </div>
+
             {/* Footer */}
-            <div className='h-16 bg-green-600 flex items-center justify-center'>
+            <div className='h-16 bg-green-700 flex items-center justify-center'>
                 <div className='text-white flex gap-4'>
                     <a href='/about-us'>About Us</a>
                     <a href='/contact'>Contact</a>
