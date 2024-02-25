@@ -3,14 +3,17 @@ import axios from 'axios';
 import CategoryCard from './Components/CategoryCard'
 import Navigation from './Components/Navigation';
 
+import { BACKEND_URL } from './constants.js';
+
 function App() {
 
   const [restaurantData, setRestaurantData] = useState(null);
 
   const fetchRestaurantData = async (zipcode) => {
     try {
+      console.log(`${BACKEND_URL}restaurant/all`);
       if (zipcode.length === 0) {
-        const response = await axios.get('http://127.0.0.1:8000/restaurant/all');
+        const response = await axios.get(`${BACKEND_URL}/restaurant/all`);
         setRestaurantData(response.data)
       } else {
         setRestaurantData(null)
