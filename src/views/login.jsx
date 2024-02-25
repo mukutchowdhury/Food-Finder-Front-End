@@ -22,30 +22,6 @@ function LoginView() {
                     <a href="/register">Register</a>
                 </div>
             </div>
-            {/* Right side content */}
-            <div className="testimonial-container">
-                <h2>Testimonials</h2>
-                <div className="testimonial">
-                    <p>"Great food options on a low budget!"</p>
-                    <p>- Jose Caledron</p>
-                </div>
-                <div className="testimonial">
-                    <p>"An upgrade over UberEats fosho!!!"</p>
-                    <p>- Mike Mcquire</p>
-                </div>
-                <div className="testimonial">
-                    <p>"I'm impressed by the speed and reliability of this platform. It's been a game-changer for me."</p>
-                    <p>- Steve Parson</p>
-                </div>
-                <div className="testimonial">
-                    <p>This platform has made my life so much easier. I can't imagine working without it now.</p>
-                    <p>- John Adam</p>
-                </div>
-                <div className="testimonial">
-                    <p>""I've tried many similar platforms, but this one stands out for its simplicity and effectiveness."</p>
-                    <p>- Drake</p>
-                </div>
-            </div>
             {/* Footer */}
             <div className='h-16 bg-green-700 flex items-center justify-center'>
                 <div className='text-white flex gap-4'>
