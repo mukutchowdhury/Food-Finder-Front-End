@@ -6,3 +6,25 @@
   margin: 0;
   padding: 0;
 }
+
+.custom-pseudo::before {
+  content: "";
+  display: block;
+  position: static;
+  padding: 0px;
+  margin: 0px;
+  flex: 0 0 32px;
+  width: 32px;
+  box-sizing: border-box;
+}
+
+.custom-pseudo::after {
+  content: "";
+  display: block;
+  position: static;
+  padding: 0px;
+  margin: 0px;
+  flex: 0 0 32px;
+  width: 32px;
+  box-sizing: border-box;
+}
