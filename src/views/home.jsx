@@ -33,6 +33,19 @@ function HomeView() {
                                 </button>
                             </form>
                         </div>
+                        <div className='w-2/6'>
+                            <form className="relative">
+                                <input
+                                    type='text'
+                                    className='mt-1 p-2 pl-8 w-full h-10 rounded-3xl border border-gray-300 focus:outline-none'
+                                    placeholder='Enter a restaurant'
+                                />
+                                <FontAwesomeIcon icon={faLocationDot} className="absolute left-3 top-4 text-gray-400" />
+                                <button type="submit" className="absolute right-2 top-2 bg-green-600 rounded-full h-8 w-8 flex justify-center items-center">
+                                    <FontAwesomeIcon icon={faArrowAltCircleRight} className="text-white" />
+                                </button>
+                            </form>
+                        </div>
                         <div className='h-full flex justify-between items-center mx-8 gap-5'>
                             <button type= "submit" className="bg-green-700 hover:bg-green-800 text-white text-lg font-semibold py-2 px-4 rounded flex justify-center cursor-pointer">
                                 Login
