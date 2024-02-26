@@ -94,22 +94,27 @@ function HomeView() {
                 <h2>Testimonials</h2>
                 <div className="testimonial">
                     <p>"Great food options on a low budget!"</p>
+                    <p>"5 Stars</p>
                     <p>- Jose Caledron</p>
                 </div>
                 <div className="testimonial">
                     <p>"An upgrade over UberEats fosho!!!"</p>
+                    <p>"4 Stars</p>
                     <p>- Mike Mcquire</p>
                 </div>
                 <div className="testimonial">
                     <p>"I'm impressed by the speed and reliability of this platform. It's been a game-changer for me."</p>
+                    <p>"4 Stars</p>
                     <p>- Steve Parson</p>
                 </div>
                 <div className="testimonial">
                     <p>This platform has made my life so much easier. I can't imagine working without it now.</p>
+                    <p>"5 Stars</p>
                     <p>- John Adam</p>
                 </div>
                 <div className="testimonial">
                     <p>""I've tried many similar platforms, but this one stands out for its simplicity and effectiveness."</p>
+                    <p>"5 Stars</p>
                     <p>- Drake</p>
                 </div>
             </div>
