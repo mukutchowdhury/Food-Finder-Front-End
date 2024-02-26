@@ -17,6 +17,7 @@ function LoginView() {
                     <button type="submit" className="btn btn-primary">Login</button>
                 </form>
                 <div className="links">
+                    <a href="/forgot-username">Forgot your username?</a>
                     <a href="/forgot-password">Forgot your password?</a>
                     <span> | </span>
                     <a href="/register">Register</a>
