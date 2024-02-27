@@ -1,13 +1,25 @@
-import burgerImage from "../assets/BBQ-Bacon-Burger-2_1.jpg"
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+import { BACKEND_URL } from '../constants';
 
 function RestaurantCard(props) {
+    const { restaurant_id, name, address, zipcode, rest_image } = props.restaurantInfo;
+    const [totalStar, setTotalStar] = useState(4.5);
+    const [totalReviews, setTotalReviews] = useState(0);
 
-    const { name, address, zipcode } = props.restaurantInfo;
+    useEffect(() => {
+        const fetchReviewData = async () => {
+            const response = await axios.get(`${BACKEND_URL}/review/${restaurant_id}`);
+            setTotalStar(response.data.total);
+            setTotalReviews(response.data.review.length);
+        }
+        fetchReviewData();
+    }, [restaurant_id])
 
     return (
         <div className='mb-4 overflow-hidden relative max-w-full box-border' style={{ scrollSnapAlign: 'start', flex: "0 0 346px" }}>
@@ -18,7 +30,7 @@ function RestaurantCard(props) {
                     <div className='relative box-border'>
                         <a className='absolute inset-0 decoration-inherit cursor-pointer box-border'></a>
                         <div className='h-44 w-full overflow-hidden bg-white opacity-100 rounded-md box-border'> 
-                            <img className='block w-full h-full object-cover box-border' src={burgerImage} style={{ objectPosition: '50% 50%' }}></img>
+                            <img className='block w-full h-full object-cover box-border' src={`/src/assets${rest_image}`} style={{ objectPosition: '50% 50%' }}></img>
                         </div>
                     </div>
                     <div className='relative mt-3 box-border'>
@@ -32,10 +44,10 @@ function RestaurantCard(props) {
                                         <div className='box-border'>
                                             <div className='max-w-full flex items-stretch justify-start flex-row box-border gap-1'>
                                                 <div className='max-w-full flex items-center justify-start flex-row box-border gap-1'>
-                                                    <span className='text-sm font-medium block tracking-normal text-gray-500 text-left overflow-hidden overflow-ellipsis whitespace-nowrap box-border'>4.5</span>
+                                                    <span className='text-sm font-medium block tracking-normal text-gray-500 text-left overflow-hidden overflow-ellipsis whitespace-nowrap box-border'>{totalStar.toFixed(1)}</span>
                                                     <FontAwesomeIcon icon={faStar} size="xs" className='text-gray-500'/>
                                                 </div>
-                                                <span className='text-sm font-medium block text-gray-500 text-left overflow-hidden overflow-ellipsis whitespace-nowrap box-border'>(2,000+)</span>
+                                                <span className='text-sm font-medium block text-gray-500 text-left overflow-hidden overflow-ellipsis whitespace-nowrap box-border'>({totalReviews})</span>
                                             </div>
                                         </div>
                                         <span className='pr-1 ml-[2px] text-sm font-medium tracking-normal text-gray-500 box-border'>•</span>
