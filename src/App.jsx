@@ -2,6 +2,7 @@ import { useState } from 'react'
 import axios from 'axios';
 import CategoryCard from './Components/CategoryCard'
 import Navigation from './Components/Navigation';
+//import DiscountCard from './Components/DiscountCard.jsx';
 
 import { BACKEND_URL } from './constants.js';
 
@@ -29,8 +30,17 @@ function App() {
       <Navigation callback={fetchRestaurantData} />
       <div className='relative z-0 box-border'>
         <div className='max-w-[1280px] mx-auto box-border'>
+          <div>
+              <div className='relative'>
+                  <div className='mb-6 overscroll-x-contain snap-x mx-16 overflow-hidden scroll-smooth max-w-full flex items-stretch justify-start gap-3' style={{scrollbarWidth: "none"}}>
+                    {/* {restaurantData !== null && (
+                      <DiscountCard restaurantInfo={restaurantData[2]}/>
+                    )} */}
+                  </div>
+              </div>
+          </div>
           {restaurantData !== null && (
-            <CategoryCard categoryName='Most popular local restaurants' restaurantList={restaurantData}/>
+            <CategoryCard categoryName='Most popular fast food' restaurantList={restaurantData}/>
           )}
         </div>
       </div>
