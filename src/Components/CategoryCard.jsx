@@ -3,13 +3,29 @@ import PropTypes from 'prop-types'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { useRef } from 'react';
 
 function CategoryCard(props) {
     const { categoryName, restaurantList } = props;
+    const containerRef = useRef(null);
 
     const arrayifyRestaurantsObject = () => {
         return Object.keys(restaurantList);
     }
+
+    const scrollRight = () => {
+      if (containerRef.current) {
+        containerRef.current.scrollLeft += 500;
+      }
+      console.log('active')
+    };
+
+    const scrollLeft = () => {
+        if (containerRef.current) {
+          containerRef.current.scrollLeft -= 500;
+        }
+    };
+  
 
     return (
         <>
@@ -29,16 +45,18 @@ function CategoryCard(props) {
                         </span>
                     </span>
                     <div className='max-w-full flex items-stretch justify-start ml-4 flex-row box-border'>
-                        <button className='relative inline-flex items-center justify-center w-8 h-8 rounded-full border transition duration-150 ease-in-out cursor-pointer select-none text-center bg-gray-200 shadow-inner border-gray-200 text-gray-700 box-border'>
+                        <button className='relative inline-flex items-center justify-center w-8 h-8 rounded-full border transition duration-150 ease-in-out cursor-pointer select-none text-center bg-gray-200 shadow-inner border-gray-200 text-gray-700 box-border'
+                                onClick={scrollLeft}>
                             <FontAwesomeIcon icon={faArrowLeft} />
                         </button>
-                        <button className='relative inline-flex items-center justify-center w-8 h-8 rounded-full border transition duration-150 ease-in-out cursor-pointer select-none text-center bg-gray-200 shadow-inner border-gray-200 text-gray-700 ml-2 box-border'>
+                        <button className='relative inline-flex items-center justify-center w-8 h-8 rounded-full border transition duration-150 ease-in-out cursor-pointer select-none text-center bg-gray-200 shadow-inner border-gray-200 text-gray-700 ml-2 box-border'
+                                onClick={scrollRight}>
                             <FontAwesomeIcon icon={faArrowRight} />
                         </button>
                     </div>
                     </div>
                 </div>
-                <div className='overscroll-x-contain mx-16 overflow-auto scroll-smooth max-w-full flex items-stretch justify-start mt-4 gap-14 box-border'>
+                <div ref={containerRef} className='overscroll-x-contain mx-16 overflow-auto scroll-smooth max-w-full flex items-stretch justify-start mt-4 gap-14 box-border' style={{scrollbarWidth: "none"}}>
                     {arrayifyRestaurantsObject().map((item, index) => (
                         <RestaurantCard restaurantInfo={restaurantList[item]} key={index}/>
                     ))}
