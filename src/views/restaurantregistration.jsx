@@ -1,38 +1,37 @@
 import React, { useState } from 'react';
 import '../styling/restaurantregistrationStyle.css';
 
-
-function RestaurantRegistrationView(){
+function RestaurantRegistrationView() {
     // forms
-    const[formdata, setformdata] = useState({
-        rest_id : '',
-        rest_name : '',
-        rest_address : '',
+    const [formdata, setFormData] = useState({
+        rest_id: '',
+        rest_name: '',
+        rest_address: '',
         rest_zipcode: '',
         rest_owner_id: '',
         rest_image: ''
     });
 
-    const handleInput = (e)=>{
-        const{ name, value} = e.target;
-        setformdata({
+    const handleInput = (e) => {
+        const { name, value } = e.target;
+        setFormData({
             ...formdata,
             [name]: value
-        })
-    }
+        });
+    };
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formdata);
-        setformdata({
-            rest_id : '',
-            rest_name : '',
-            rest_address : '',
+        setFormData({
+            rest_id: '',
+            rest_name: '',
+            rest_address: '',
             rest_zipcode: '',
             rest_owner_id: '',
             rest_image: ''
-        })
-    }
+        });
+    };
 
     return (
         <div className="registration-form-container">
@@ -40,27 +39,27 @@ function RestaurantRegistrationView(){
             <form onSubmit={handleSubmit}>
                 <label>
                     Restaurant ID:
-                    <input type="text" name="rest_id" value={formData.rest_id} onChange={handleInputChange} />
+                    <input type="text" name="rest_id" value={formdata.rest_id} onChange={handleInput} />
                 </label>
                 <label>
                     Restaurant Name:
-                    <input type="text" name="rest_name" value={formData.rest_name} onChange={handleInputChange} />
+                    <input type="text" name="rest_name" value={formdata.rest_name} onChange={handleInput} />
                 </label>
                 <label>
                     Address:
-                    <input type="text" name="rest_address" value={formData.rest_address} onChange={handleInputChange} />
+                    <input type="text" name="rest_address" value={formdata.rest_address} onChange={handleInput} />
                 </label>
                 <label>
                     Zip Code:
-                    <input type="text" name="rest_zipcode" value={formData.rest_zipcode} onChange={handleInputChange} />
+                    <input type="text" name="rest_zipcode" value={formdata.rest_zipcode} onChange={handleInput} />
                 </label>
                 <label>
                     Owner ID:
-                    <input type="text" name="rest_owner_id" value={formData.rest_owner_id} onChange={handleInputChange} />
+                    <input type="text" name="rest_owner_id" value={formdata.rest_owner_id} onChange={handleInput} />
                 </label>
                 <label>
                     Image URL:
-                    <input type="text" name="rest_image" value={formData.rest_image} onChange={handleInputChange} />
+                    <input type="text" name="rest_image" value={formdata.rest_image} onChange={handleInput} />
                 </label>
                 <button type="submit">Register</button>
             </form>
