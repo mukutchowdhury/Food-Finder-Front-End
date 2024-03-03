@@ -33,7 +33,7 @@ function CategoryCard(props) {
                 <div className=' max-w-full flex items-center justify-between box-border overflow-auto mx-16'>
                     <div className='max-w-full flex-1 items-center justify-start flex-row overflow-hidden box-border'>
                     <div className='max-w-full flex items-center justify-start flex-row box-border'>
-                        <span className='leading-8 text-3xl font-bold tracking-tighter text-black text-left overflow-hidden truncate whitespace-no-wrap box-border'>
+                        <span className='leading-8 text-2xl font-bold tracking-tighter text-black text-left overflow-hidden truncate whitespace-no-wrap box-border'>
                         {categoryName}
                         </span>
                     </div>
