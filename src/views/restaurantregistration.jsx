@@ -58,7 +58,7 @@ function RestaurantRegistrationView() {
                     <input type="text" name="rest_owner_id" value={formdata.rest_owner_id} onChange={handleInput} />
                 </label>
                 <label>
-                    Image URL:
+                    Image:
                     <input type="text" name="rest_image" value={formdata.rest_image} onChange={handleInput} />
                 </label>
                 <button type="submit">Register</button>
