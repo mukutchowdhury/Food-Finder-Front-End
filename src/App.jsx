@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import axios from 'axios';
 
-import CategoryCard from './Components/CategoryCard'
+import CategoryCard from './Components/RestaurantShower/CategoryCard.jsx'
 import Navigation from './Components/Navigation';
 //import DiscountCard from './Components/DiscountCard.jsx';
-import FilterCard from './Components/FilterCard.jsx';
-import IconFilterCard from './Components/IconFilterCard.jsx';
+import FilterCard from './Components/RestaurantShower/FilterCard.jsx';
+import IconFilterCard from './Components/RestaurantShower/IconFilterCard.jsx';
 
 import bf_icon from './assets/bf-icon.png'
 import ff_icon from './assets/ff-icon.png'
