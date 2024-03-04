@@ -1,0 +1,27 @@
+.app {
+    background-color: lightgray;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  .SearchBar-container{
+    padding-top: 3vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+  }
+  
+  .searchInput {
+    border: none;
+    outline: none;
+    width: 200px;
+    margin-right: 8px;
+  }
+  
+  .searchIcon {
+    color: #888;
+    /* Adjust margin or padding as needed */
+  }
+  
