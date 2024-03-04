@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { FaSearch } from 'react-icons/fa'
+import { useState } from 'react';
 import '../styling/restStyle.css'
 
 const SearchBar = () => {
@@ -7,7 +6,6 @@ const SearchBar = () => {
   return (
   <div className= 'input-wrapper'>  
     <input placeholder='Look for restaurants...' value={input} onChange={(e) => setInput(e.target.value)}/>
-    <FaSearch id='search-icon'/>
   </div>
   );
 };
