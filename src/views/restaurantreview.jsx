@@ -46,7 +46,7 @@ function RestaurantReviewView() {
                     <input type="text" name="rest_address" value={formdata.rest_rating} onChange={handleInput} />
                 </label>
                 <label>
-                    Comment
+                    Comment:
                     <input type="text" name="rest_zipcode" value={formdata.rest_comment} onChange={handleInput} />
                 </label>
             </form>
