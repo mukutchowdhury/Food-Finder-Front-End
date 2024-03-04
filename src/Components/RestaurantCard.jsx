@@ -8,7 +8,7 @@ import axios from 'axios';
 import { BACKEND_URL } from '../constants';
 
 function RestaurantCard(props) {
-    const { restaurant_id, name, address, zipcode, rest_image } = props.restaurantInfo;
+    const { restaurant_id, name, address, zipcode, image } = props.restaurantInfo;
     const [totalStar, setTotalStar] = useState(4.5);
     const [totalReviews, setTotalReviews] = useState(0);
 
@@ -30,7 +30,7 @@ function RestaurantCard(props) {
                     <div className='relative box-border'>
                         <a className='absolute inset-0 decoration-inherit cursor-pointer box-border'></a>
                         <div className='h-44 w-full overflow-hidden bg-white opacity-100 rounded-md box-border'> 
-                            <img className='block w-full h-full object-cover box-border' src={`/src/assets${rest_image}`} style={{ objectPosition: '50% 50%' }}></img>
+                            <img className='block w-full h-full object-cover box-border' src={image} style={{ objectPosition: '50% 50%' }}></img>
                         </div>
                     </div>
                     <div className='relative mt-3 box-border'>
