@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaSearch } from 'react-icons/fa'
-import './SearchBar.css';
+import '../styling/restStyle.css'
 
 const SearchBar = () => {
     const [input, setInput] = useState("")

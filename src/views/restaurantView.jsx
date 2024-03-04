@@ -10,8 +10,10 @@ function RestaurantView() {
         <div className="SearchBar-container">
             <SearchBar />
         </div>
-      <ProfileIcon />
-      <div className="restaurant-content">
+        <div className="Profile-container">
+            <ProfileIcon />
+        </div>
+        <div className="restaurant-content">
         <RestaurantInfo />
       </div>
     </div>
