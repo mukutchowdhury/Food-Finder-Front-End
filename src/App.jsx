@@ -18,6 +18,7 @@ import { BACKEND_URL } from './constants.js';
 function App() { //FFA500
 
   const [restaurantData, setRestaurantData] = useState(null);
+  const [activeFilter, setActiveFilter] = useState(false);
 
   const fetchRestaurantData = async (zipcode) => {
     try {
@@ -29,9 +30,22 @@ function App() { //FFA500
         const response = await axios.get(`${BACKEND_URL}/restaurants/by-zipcode/${zipcode}`);
         setRestaurantData(response.data)
       }
+      setActiveFilter(false);
     } catch (error) {
       console.error(error)
     }
+  }
+
+  const filterByCuisine = async (keyword) => {
+    // ISSUE: If I click a filter then click another filter, the previous item is elimated and cannot satisfy the new filter
+    const filteredData = Object.fromEntries(
+        // eslint-disable-next-line no-unused-vars
+        Object.entries(restaurantData).filter(([key, value]) =>
+            value.cuisine.indexOf(keyword) !== -1
+        )
+    );
+    setRestaurantData(filteredData);
+    setActiveFilter(true);
   }
 
   return (
@@ -46,10 +60,10 @@ function App() { //FFA500
                   <div>
                     <div className='relative'>
                       <div className='py-[2px] snap-x mx-16 overflow-auto scroll-smooth max-w-full flex items-stretch justify-start gap-5' style={{scrollbarWidth: "none"}}>
-                        <IconFilterCard filterName='Breakfast' filterImage={bf_icon} />
-                        <IconFilterCard filterName='Fast Food' filterImage={ff_icon} />
-                        <IconFilterCard filterName='Coffee' filterImage={cof_icon} />
-                        <IconFilterCard filterName='Italian' filterImage={ital_icon} />
+                        <IconFilterCard filterName='Breakfast' filterImage={bf_icon} callback={filterByCuisine}/>
+                        <IconFilterCard filterName='Fast Food' filterImage={ff_icon} callback={filterByCuisine}/>
+                        <IconFilterCard filterName='Coffee' filterImage={cof_icon} callback={filterByCuisine}/>
+                        <IconFilterCard filterName='Italian' filterImage={ital_icon} callback={filterByCuisine}/>
                       </div>
                     </div>
                   </div>
@@ -67,6 +81,24 @@ function App() { //FFA500
                           </div>
                         </div>
                       </div>
+                      {activeFilter && (
+                      <div className='mx-16 max-w-full flex items-center justify-between mt-4'>
+                        <span className='leading-8 text-2xl font-bold tracking-tighter text-left m-0 p-0 block text-[#191919]'>{Object.keys(restaurantData || []).length} results</span>
+                        <button className='ml-6 relative max-w-full m-0 p-0 inline-flex min-h-8 w-auto bg-gray-200 items-center justify-start rounded-3xl cursor-pointer select-none text-center text-[#191919]' 
+                        style={{boxShadow:"rgb(231, 231, 231) 0px 0px 0px 1px inset",textDecoration: "none", border:"medium" }}
+                        onClick={() => fetchRestaurantData('')}>
+                          <span className='block flex-grow max-w-full opacity-100 px-3 py-0'>
+                            <span className='max-w-full flex items-center justify-center flex-row'>
+                              <span className='flex-grow-[2] min-w-0 flex justify-center'>
+                                <span className='w-full text-sm font-bold text-center m-0 p-0 block max-w-full overflow-hidden text-ellipsis whitespace-nowrap'>
+                                  Reset
+                                </span>
+                              </span>
+                            </span>
+                          </span>
+                        </button>
+                      </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -84,9 +116,11 @@ function App() { //FFA500
                       </div>
                       {restaurantData !== null && (
                         <>
-                          <CategoryCard categoryName={`${Object.keys(restaurantData).length} results`} restaurantList={restaurantData}/>
-                          {/* <CategoryCard categoryName='Most popular local restaurant' restaurantList={restaurantData}/>
-                          <CategoryCard categoryName='All Stores' restaurantList={restaurantData}/> */}
+                          {activeFilter ? (
+                              <CategoryCard restaurantList={restaurantData} />
+                          ) : (
+                              <CategoryCard categoryName='Top Picks' restaurantList={restaurantData} />
+                          )}
                         </>
                       )}
                     </div>
