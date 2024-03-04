@@ -9,20 +9,22 @@ function CategoryCard(props) {
     const { categoryName, restaurantList } = props;
     const containerRef = useRef(null);
 
+    const PANEL_SHIFT = 1205;
+
     const arrayifyRestaurantsObject = () => {
         return Object.keys(restaurantList);
     }
 
     const scrollRight = () => {
       if (containerRef.current) {
-        containerRef.current.scrollLeft += 500;
+        containerRef.current.scrollLeft += PANEL_SHIFT;
       }
       console.log('active')
     };
 
     const scrollLeft = () => {
         if (containerRef.current) {
-          containerRef.current.scrollLeft -= 500;
+          containerRef.current.scrollLeft -= PANEL_SHIFT;
         }
     };
   
@@ -30,6 +32,7 @@ function CategoryCard(props) {
     return (
         <>
             <div className=' max-w-full mt-4 box-border'>
+                {categoryName !== undefined && (
                 <div className=' max-w-full flex items-center justify-between box-border overflow-auto mx-16'>
                     <div className='max-w-full flex-1 items-center justify-start flex-row overflow-hidden box-border'>
                     <div className='max-w-full flex items-center justify-start flex-row box-border'>
@@ -56,6 +59,7 @@ function CategoryCard(props) {
                     </div>
                     </div>
                 </div>
+                )}
                 <div ref={containerRef} className='overscroll-x-contain mx-16 overflow-auto scroll-smooth max-w-full flex items-stretch justify-start mt-4 gap-14 box-border' style={{scrollbarWidth: "none"}}>
                     {arrayifyRestaurantsObject().map((item, index) => (
                         <RestaurantCard restaurantInfo={restaurantList[item]} key={index}/>
@@ -67,7 +71,7 @@ function CategoryCard(props) {
 }
 
 CategoryCard.propTypes = {
-    categoryName: PropTypes.string.isRequired,
+    categoryName: PropTypes.string,
     restaurantList: PropTypes.object.isRequired,
 };
 
