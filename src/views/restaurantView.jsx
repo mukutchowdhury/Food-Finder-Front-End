@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Components/Button";
 import SearchBar from "../Components/SearchBar";
 import ProfileIcon from "../Components/ProfileIcon";
 import RestaurantInfo from "../Components/RestaurantInfo";
@@ -35,6 +36,11 @@ function RestaurantView() {
         />
         <RestaurantImage imageUrl={imageData.imageUrl} altText={imageData.altText} />
       </div>
+      <div className="button-container">
+            {/* Use the Button component for menus and reservation placeholder*/}
+            <Button to="/menus" text="Menus" />
+            <Button to="/reservation" text="Reserve a Table" />
+          </div>
     </div>
   );
 }

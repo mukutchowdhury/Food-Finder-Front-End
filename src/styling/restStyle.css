@@ -5,19 +5,19 @@
 }
   
 .SearchBar-container {
-padding-top: 3vh;
-margin: auto;
-display: flex;
-flex-direction: column;
-align-items: center;
-min-width: 200px;
+    padding-top: 3vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
 }
 
 .searchInput {
-border: none;
-outline: none;
-width: 200px;
-margin-right: 8px;
+    border: none;
+    outline: none;
+    width: 200px;
+    margin-right: 8px;
 }
 
 .searchIcon {
@@ -25,15 +25,15 @@ color: #888;
 }
 
 .input-wrapper {
-background-color: lightgray;
-width: 500px;
-max-width: 100%;
-border-radius: 10px;
-height: 2.5rem;
-padding: 0 15px;
-box-shadow: 0px 0px 8px #ddd;
-display: flex;
-align-items: center;
+    background-color: lightgray;
+    width: 500px;
+    max-width: 100%;
+    border-radius: 10px;
+    height: 2.5rem;
+    padding: 0 15px;
+    box-shadow: 0px 0px 8px #ddd;
+    display: flex;
+    align-items: center;
 }
 
 input {
@@ -54,43 +54,63 @@ input:focus {
 }
   
 .profile-icon {
-position: fixed;
-top: 10px; 
-right: 50px; 
-font-size: 30px; 
-color: black; 
-padding-top: 1vh;
+    position: fixed;
+    top: 10px; 
+    right: 50px; 
+    font-size: 30px; 
+    color: black; 
+    padding-top: 1vh;
 }
 
 
 .restaurant-content {
-display: flex;
-width: 100vw; 
+    display: flex;
+    width: 100vw; 
 }
 
 .restaurant-info {
-background-color: #f9f9f9; 
-padding: 20px;
-box-sizing: border-box;
-flex: 1;
+    background-color: #f9f9f9; 
+    padding: 20px;
+    box-sizing: border-box;
+    flex: 1;
 }
 
 .restaurant-info h2 {
-font-size: 2rem;
-margin-bottom: 10px;
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
 
 .restaurant-image {
-width: 50vw;
-height: 100%;
-overflow: hidden;
+    width: 50vw;
+    height: 100%;
+    overflow: hidden;
 }
 
 .restaurant-image img {
-width: 100%;
-height: 100%;
-object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.rest-button {
+    background-color: orange;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rest-button:hover {
+    background-color: orange;
+}
+  
 
 
