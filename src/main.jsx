@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 //import HomeView from './views/home'
-//import HomeView from './views/home'
-//import LoginView from './views/login'
+import HomeView from './views/home'
+import LoginView from './views/login'
 //import SignUpView from './views/signupStyle'
 //import Review from './Components/Review.jsx'
 import RestaurantRegistrationView from './views/restaurantregistration.jsx'
@@ -13,7 +13,8 @@ import './index.css'
 const router = createBrowserRouter(createRoutesFromElements(
   <Route>
       <Route index element={<App />} />
-      
+      <Route path='/Home' element={<HomeView/>}/>
+      <Route path='/Login' element={<LoginView/>}/>
       <Route path='/restaurantregistration' element={<RestaurantRegistrationView/>}/>
 
       
