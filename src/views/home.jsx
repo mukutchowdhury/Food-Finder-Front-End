@@ -5,9 +5,7 @@ import '../styling/homeStyle.css';
 
 import mainimage from '../assets/bg-motor.png';
 import couponImage from '../assets/coupon.jpg';
-import iconimage from '../assets/magnifying-glass-icon.png';
 import restaurant_image from '../assets/restaurant_pic.jpg';
-
 
 function HomeView() {
     return (
@@ -60,7 +58,6 @@ function HomeView() {
                     <span className='text-9xl font-bold text-black'>Food Finder</span>
                 </div>
                 <div className='absolute top-1/2 left-1/2 transform -translate-x-[-170%] -translate-y-[130%]'>
-                <img className='w-5/6 h-5/6' src={iconimage} alt="food png image" />
             </div>
             </div>
             <div className='absolute top-1/2 left-1/2 transform -translate-x-[40%] -translate-y-[40%]'>

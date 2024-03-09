@@ -69,7 +69,7 @@ function Navigation(props) {
                                     </span>
                                 </span>
                             </a>
-                            <a className='relative max-w-full m-0 p-0 inline-flex w-auto items-center justify-start rounded-full border bg-green-600 cursor-pointer transition duration-150 ease-in-out select-none text-center shadow-outline border-gray-300 text-gray-700 box-border'>
+                            <a className='relative max-w-full m-0 p-0 inline-flex w-auto items-center justify-start rounded-full border bg-[#d69a2bc6] cursor-pointer transition duration-150 ease-in-out select-none text-center shadow-outline border-gray-300 text-gray-700 box-border'>
                                 <span className='block flex-grow max-w-full transition-opacity opacity-100 pt-0 px-3 box-border'>
                                     <span className='transition-colors max-w-full flex items-center justify-center flex-row box-border'>
                                         <span className='flex-grow-[2] min-w-0 transition-colors box-border'>
