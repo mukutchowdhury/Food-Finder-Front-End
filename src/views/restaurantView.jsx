@@ -1,9 +1,9 @@
 import React from "react";
 import Button from "../Components/Button";
-import SearchBar from "../Components/SearchBar";
 import ProfileIcon from "../Components/ProfileIcon";
-import RestaurantInfo from "../Components/RestaurantInfo";
 import RestaurantImage from "../Components/RestaurantImage";
+import RestaurantInfo from "../Components/RestaurantInfo";
+import SearchBar from "../Components/SearchBar";
 import '../styling/restStyle.css';
 
 function RestaurantView() {
