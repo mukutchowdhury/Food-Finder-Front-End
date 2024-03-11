@@ -47,12 +47,12 @@ function Navigation(props) {
                             </div>
                         </div>
                     </div>
-                    <div className='mr-[104px] justify-end items-center max-w-full w-full flex box-border flex-row'>
-                        <div className='cursor-text max-w-[460px] pr-0 box-border' style={{width: "inherit"}}>
+                    <div className='mr-[0px] justify-end items-center max-w-full w-full flex box-border flex-row'>
+                        <div className='max-w-[460px] pr-0 box-border' style={{width: "inherit"}}>
                             <div className='box-border'>
                                 <div className='box-border'>
                                     <div className='px-4 py-0 relative box-border'>
-                                        <div className='w-full box-border'>
+                                        <div className='w-full box-border cursor-text'>
                                             <div className='max-w-full box-border'>
                                                 <div className='flex min-h-10 box-border'>
                                                     <div className='text-base font-medium tracking-normal text-gray-900 flex items-center w-full rounded-full z-10 px-3 py-2 border bg-gray-200 shadow-inner pr-2 box-border'>
@@ -64,7 +64,7 @@ function Navigation(props) {
                                                         <div className='flex-grow bg-inherit max-w-full mt-0 mr-auto box-border'>
                                                             <input className='text-ellipsis text-base font-medium tracking-normal w-full border outline-none flex-1 bg-transparent appearance-none m-0 p-0 box-border' 
                                                                 type='text'
-                                                                placeholder='Enter zipcode'
+                                                                placeholder='Search stores, dishes, products'
                                                                 value={zipcodeEntry}
                                                                 onChange={handleChange}
                                                                 onKeyDown={handleSubmit}
@@ -81,7 +81,13 @@ function Navigation(props) {
                         </div>
                         <div className='flex flex-nowrap mr-10 items-center ml-2 box-border gap-2'>
                             {email ? (
-                                <p>{email}!</p>
+                                <a className='decoration-inherit cursor-pointer'>
+                                <div className='max-w-full flex items-center justify-center flex-row'>
+                                    <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gray-300">
+                                        {/* Icon or content goes here */}
+                                    </div>
+                                </div>
+                            </a>
                             ) : (
                             <>
                             <a href='/signin' className='relative max-w-full m-0 p-0 inline-flex w-auto items-center justify-start rounded-full border cursor-pointer transition duration-150 ease-in-out select-none text-center bg-transparent shadow-outline border-gray-300 text-gray-700 box-border'>
