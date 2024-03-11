@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
-//import HomeView from './views/home'
-//import SignUpView from './views/signupStyle'
-//import Review from './Components/Review.jsx'
+import HomeView from './views/home'
+import LoginForm from './views/LoginForm.jsx'
+import AuthForm from './views/AuthForm.jsx'
 import App from './App.jsx';
 import RestaurantView from './views/restaurantView.jsx';
 
@@ -11,17 +11,10 @@ import './index.css';
 const router = createBrowserRouter(createRoutesFromElements(
   <Route>
       <Route index element={<App />} />
-      {/* /*
       <Route path='/Home' element={<HomeView/>}/>
-      <Route path='/Login' element={<LoginView/>}/>
-      
-      */ 
-      <Route path='/RestaurantView' element={<RestaurantView/>}/>
-      }
-
-
-      
-      
+      <Route path='/signin' element={<LoginForm/>}/> 
+      <Route path='/signup' element={<AuthForm/>}/> 
+      <Route path='/RestaurantView' element={<RestaurantView/>}/>      
   </Route>
 ));
 
