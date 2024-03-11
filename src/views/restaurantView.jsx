@@ -1,9 +1,18 @@
-import React from "react";
 import Button from "../Components/Button";
+<<<<<<< HEAD
 import ProfileIcon from "../Components/ProfileIcon";
 import RestaurantImage from "../Components/RestaurantImage";
 import RestaurantInfo from "../Components/RestaurantInfo";
 import SearchBar from "../Components/SearchBar";
+=======
+import Deals from "../Components/Deal";
+import ProfileIcon from "../Components/ProfileIcon";
+import React from "react";
+import RestaurantInfo from "../Components/RestaurantInfo";
+import RestaurantImage from "../Components/RestaurantImage";
+import SearchBar from "../Components/SearchBar";
+import Taco from '../assets/Terrific-tacos.jpeg'
+>>>>>>> 44d39b2b8e6ebe31fccda3d2227715a0ac06a845
 import '../styling/restStyle.css';
 
 function RestaurantView() {
@@ -15,9 +24,24 @@ function RestaurantView() {
       };    
 
       const imageData = {
-        imageUrl: 'src/assets/Terrific-tacos.jpeg',
+        imageUrl: Taco,
         altText: 'Restaurant Image',
       };    
+
+    const dealsData = [
+      {
+        imageUrl: Taco,
+        altText: 'Deal 1',
+        title: 'Special Offer 1',
+        description: 'Take 30% off your first order',
+      },
+      {
+        imageUrl: Taco,
+        altText: 'Deal 2',
+        title: 'Discounted Menu',
+        description: 'Buy one taco get one free',
+      },
+    ];
 
   return (
     <div className="app">
@@ -41,6 +65,17 @@ function RestaurantView() {
             <Button to="/menus" text="Menus" />
             <Button to="/reservation" text="Reserve a Table" />
           </div>
+          <div className="deals-container">
+            {dealsData.map((deal, index) => (
+              <Deals
+                key={index}
+                imageUrl={deal.imageUrl}
+                altText={deal.altText}
+                title={deal.title}
+                description={deal.description}
+              />
+            ))}
+      </div>
     </div>
   );
 }
