@@ -1,18 +1,9 @@
 import Button from "../Components/Button";
-<<<<<<< HEAD
 import ProfileIcon from "../Components/ProfileIcon";
 import RestaurantImage from "../Components/RestaurantImage";
 import RestaurantInfo from "../Components/RestaurantInfo";
 import SearchBar from "../Components/SearchBar";
-=======
-import Deals from "../Components/Deal";
-import ProfileIcon from "../Components/ProfileIcon";
-import React from "react";
-import RestaurantInfo from "../Components/RestaurantInfo";
-import RestaurantImage from "../Components/RestaurantImage";
-import SearchBar from "../Components/SearchBar";
-import Taco from '../assets/Terrific-tacos.jpeg'
->>>>>>> 44d39b2b8e6ebe31fccda3d2227715a0ac06a845
+import Testimonial from "../Components/Testimonial";
 import '../styling/restStyle.css';
 
 function RestaurantView() {
@@ -65,6 +56,8 @@ function RestaurantView() {
             <Button to="/menus" text="Menus" />
             <Button to="/reservation" text="Reserve a Table" />
           </div>
+          
+
           <div className="deals-container">
             {dealsData.map((deal, index) => (
               <Deals
@@ -76,6 +69,27 @@ function RestaurantView() {
               />
             ))}
       </div>
+
+      <div className="testimonial-container">
+                <h2>Testimonials</h2>
+                <Testimonial
+                    text="Great food options on a low budget!"
+                    rating="5 Stars"
+                    author="Jose Caledron"
+                />
+                <Testimonial
+                    text="An upgrade over UberEats fosho!!!"
+                    rating="4 Stars"
+                    author="Mike Mcquire"
+                />
+                <Testimonial
+                    text="I'm impressed by the speed and reliability of this platform. It's been a game-changer for me."
+                    rating="4 Stars"
+                    author="Steve Parson"
+                />
+            </div>
+
+      
     </div>
   );
 }
