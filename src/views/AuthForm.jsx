@@ -49,7 +49,7 @@ export default function AuthForm() {
             });
             switch (response.data.status) {
                 case 'ok':
-                    navigate('/');
+                    navigate('/signin');
                     break;
                 case '1B':
                     setRespStatus("Email already exists");
