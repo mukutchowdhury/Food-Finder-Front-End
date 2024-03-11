@@ -1,9 +1,9 @@
-import React from "react";
 import Button from "../Components/Button";
-import SearchBar from "../Components/SearchBar";
 import ProfileIcon from "../Components/ProfileIcon";
-import RestaurantInfo from "../Components/RestaurantInfo";
 import RestaurantImage from "../Components/RestaurantImage";
+import RestaurantInfo from "../Components/RestaurantInfo";
+import SearchBar from "../Components/SearchBar";
+import Testimonial from "../Components/Testimonial";
 import '../styling/restStyle.css';
 
 function RestaurantView() {
@@ -15,9 +15,24 @@ function RestaurantView() {
       };    
 
       const imageData = {
-        imageUrl: 'src/assets/Terrific-tacos.jpeg',
+        imageUrl: Taco,
         altText: 'Restaurant Image',
       };    
+
+    const dealsData = [
+      {
+        imageUrl: Taco,
+        altText: 'Deal 1',
+        title: 'Special Offer 1',
+        description: 'Take 30% off your first order',
+      },
+      {
+        imageUrl: Taco,
+        altText: 'Deal 2',
+        title: 'Discounted Menu',
+        description: 'Buy one taco get one free',
+      },
+    ];
 
   return (
     <div className="app">
@@ -41,6 +56,40 @@ function RestaurantView() {
             <Button to="/menus" text="Menus" />
             <Button to="/reservation" text="Reserve a Table" />
           </div>
+          
+
+          <div className="deals-container">
+            {dealsData.map((deal, index) => (
+              <Deals
+                key={index}
+                imageUrl={deal.imageUrl}
+                altText={deal.altText}
+                title={deal.title}
+                description={deal.description}
+              />
+            ))}
+      </div>
+
+      <div className="testimonial-container">
+                <h2>Testimonials</h2>
+                <Testimonial
+                    text="Great food options on a low budget!"
+                    rating="5 Stars"
+                    author="Jose Caledron"
+                />
+                <Testimonial
+                    text="An upgrade over UberEats fosho!!!"
+                    rating="4 Stars"
+                    author="Mike Mcquire"
+                />
+                <Testimonial
+                    text="I'm impressed by the speed and reliability of this platform. It's been a game-changer for me."
+                    rating="4 Stars"
+                    author="Steve Parson"
+                />
+            </div>
+
+      
     </div>
   );
 }

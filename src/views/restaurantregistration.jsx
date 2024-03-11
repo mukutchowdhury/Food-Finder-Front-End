@@ -9,7 +9,10 @@ function RestaurantRegistrationView() {
         rest_address: '',
         rest_zipcode: '',
         rest_owner_id: '',
-        rest_image: ''
+        rest_image: '',
+        phone_num:'',
+        cuisine:''
+
     });
 
     const handleInput = (e) => {
@@ -29,7 +32,9 @@ function RestaurantRegistrationView() {
             rest_address: '',
             rest_zipcode: '',
             rest_owner_id: '',
-            rest_image: ''
+            rest_image: '',
+            phone_num: '',
+            cuisine: ''
         });
     };
 
@@ -60,6 +65,14 @@ function RestaurantRegistrationView() {
                 <label>
                     Image:
                     <input type="text" name="rest_image" value={formdata.rest_image} onChange={handleInput} />
+                </label>
+                <label>
+                    Phone Number:
+                    <input type="text" name="phone_num" value={formdata.phone_num} onChange={handleInput} />
+                </label>
+                <label>
+                    Cuisine:
+                    <input type="text" name="cuisine" value={formdata.cuisine} onChange={handleInput} />
                 </label>
                 <button type="submit">Register</button>
             </form>
