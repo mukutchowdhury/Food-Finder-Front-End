@@ -1,12 +1,65 @@
 import { useNavigate } from "react-router-dom";
 import HeaderLogo from "../Components/HeaderLogo/HeaderLogo";
+import { useState } from "react";
+import axios from "axios";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
+import { BACKEND_URL } from '../constants.js';
 
 export default function AuthForm() {
 
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+
+    const [respStatus, setRespStatus] = useState(null);
 
     const handleRedirect = () => {
-        navigate('/signin')
+        navigate('/signin');
+    }
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    };
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const handleFNameChange = (event) => {
+        setFirstName(event.target.value);
+    };
+    
+    const handleLNameChange = (event) => {
+        setLastName(event.target.value);
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post(`${BACKEND_URL}/user/signup`, {
+                "email": email,
+                "password": password,
+                "fname": firstName,
+                "lname": lastName
+            });
+            switch (response.data.status) {
+                case 'ok':
+                    navigate('/');
+                    break;
+                case '1B':
+                    setRespStatus("Email already exists");
+                    break;
+                default:
+                    break;
+            }
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (
@@ -33,7 +86,7 @@ export default function AuthForm() {
                                     </button>
                                 </span>
                             </div>
-                            <form >
+                            <form onSubmit={handleSubmit}>
                                 <div className='max-w-full mb-4'>
                                     <div className='flex justify-between'>
                                         <div className='w-[49%] flex'>
@@ -45,7 +98,13 @@ export default function AuthForm() {
                                                     <div className='flex min-h-10 mt-2'>
                                                         <div className='text-base font-medium text-[#191919] flex items-center w-full rounded-lg z-[1] px-3 py-0 bg-[#F7F7F7]'>
                                                             <div className='flex-grow bg-inherit max-w-full my-auto'>
-                                                                <input type="text" autoComplete="given-name" className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
+                                                                <input 
+                                                                type="text"
+                                                                value={firstName}
+                                                                onChange={handleFNameChange}
+                                                                required
+                                                                autoComplete="given-name" 
+                                                                className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -61,7 +120,13 @@ export default function AuthForm() {
                                                     <div className='flex min-h-10 mt-2'>
                                                         <div className='text-base font-medium text-[#191919] flex items-center w-full rounded-lg z-[1] px-3 py-0 bg-[#F7F7F7]'>
                                                             <div className='flex-grow bg-inherit max-w-full my-auto'>
-                                                                <input type="text" autoComplete="given-name" className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
+                                                                <input 
+                                                                    type="text"
+                                                                    value={lastName}
+                                                                    onChange={handleLNameChange}
+                                                                    required
+                                                                    autoComplete="given-name" 
+                                                                    className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -79,7 +144,13 @@ export default function AuthForm() {
                                             <div className='flex min-h-10 mt-2'>
                                                 <div className='text-base font-medium text-[#191919] flex items-center w-full rounded-lg z-[1] px-3 py-0 bg-[#F7F7F7]'>
                                                     <div className='flex-grow bg-inherit max-w-full my-auto'>
-                                                        <input type="text" autoComplete="given-name" className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
+                                                        <input 
+                                                            type="email"
+                                                            value={email}
+                                                            onChange={handleEmailChange}
+                                                            required
+                                                            autoComplete="given-name" 
+                                                            className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
                                                     </div>
                                                 </div>
                                             </div>
@@ -95,12 +166,32 @@ export default function AuthForm() {
                                             <div className='flex min-h-10 mt-2'>
                                                 <div className='text-base font-medium text-[#191919] flex items-center w-full rounded-lg z-[1] px-3 py-0 bg-[#F7F7F7]'>
                                                     <div className='flex-grow bg-inherit max-w-full my-auto'>
-                                                        <input type="password" autoComplete="given-name" className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
+                                                        <input 
+                                                            type="password" 
+                                                            value={password}
+                                                            onChange={handlePasswordChange}
+                                                            required
+                                                            autoComplete="given-name" 
+                                                            className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div className='max-w-full mb-4'>
+                                    {respStatus !== null && (
+                                    <div className='w-full'>
+                                        <div className='max-w-full'>
+                                            <div className='max-w-full flex justify-center items-center'>
+                                                <span className='w-full text-base text-center m-0 p-0 block max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-red-600'>
+                                                    <FontAwesomeIcon icon={faTimes} style={{ color: 'red' }} className='mr-2' />
+                                                    {respStatus}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    )}
                                 </div>
                                 <button className='relative max-w-full m-0 mt-8 p-0 flex min-h-10 w-full items-center justify-center rounded-3xl cursor-pointer select-none text-center bg-[#d69a2bc6] text-white'>
                                     <span className='block flex-grow max-w-full px-3'>
