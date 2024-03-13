@@ -1,13 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types'
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import main_icon from '../assets/main-icon.png'
 import ProfileSlide from './RestaurantShower/ProfileSlide';
 
 function Navigation(props) {
 
+    const menuRef = useRef(null);
+    const profileRef = useRef(null);
+    
     const { callback } = props
     const [zipcodeEntry, setZipcodeEntry] = useState('');
     const [isOpened, setIsOpen] = useState(false);
@@ -27,6 +30,21 @@ function Navigation(props) {
     const handleOpen = () => {
         setIsOpen(!isOpened);
     }
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (menuRef.current && profileRef &&
+            !menuRef.current.contains(event.target) && 
+            !profileRef.current.contains(event.target)) {
+          setIsOpen(false);
+        }
+      };
+  
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []);
 
     return (
         <>
@@ -88,7 +106,7 @@ function Navigation(props) {
                         <div className='flex flex-nowrap mr-10 items-center ml-2 box-border gap-2'>
                             {userid ? (
                                 <a className='decoration-inherit cursor-pointer' onClick={handleOpen}>
-                                <div className='max-w-full flex items-center justify-center flex-row'>
+                                <div className='max-w-full flex items-center justify-center flex-row' ref={profileRef}>
                                     <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-300">
                                         <FontAwesomeIcon icon={faUser} />
                                     </div>
@@ -129,7 +147,9 @@ function Navigation(props) {
                 </div>
             </header>
             {isOpened && userid && (
-                <ProfileSlide />
+                <div ref={menuRef}>
+                    <ProfileSlide />
+                </div>
             )}
         </>
     );
