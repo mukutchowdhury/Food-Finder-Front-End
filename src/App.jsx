@@ -70,7 +70,7 @@ function App() { //FFA500
                 </div>
               </div>
               <div className='max-w-full mt-4'>
-                <div className='bg-white mb-0 sticky top-[63px] z-[1] mt-2'>
+                <div className='bg-white mb-0 sticky top-[63px] z-[1] mt-2 border-b border-solid border-[#E7E7E7]'>
                   <div className='max-w-[1280px] mx-auto'>
                     <div className='mt-[-12px] py-4 max-w-full'>
                       <div className='overflow-visible mx-16 scroll-smooth max-w-full flex items-stretch justify-start' style={{scrollbarWidth: "none"}}>
