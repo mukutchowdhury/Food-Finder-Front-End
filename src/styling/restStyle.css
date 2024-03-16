@@ -3,14 +3,23 @@
     height: 100vh;
     width: 100vw;
 }
-  
+
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    width: 6rem;
+    height: auto; 
+    margin-right: 8px;
+}
+
 .SearchBar-container {
     padding-top: 3vh;
     margin: auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 200px;
+    align-items: center; /* Align items vertically */
 }
 
 .searchInput {
@@ -21,7 +30,7 @@
 }
 
 .searchIcon {
-color: #888;
+color: black;
 }
 
 .input-wrapper {
@@ -50,7 +59,7 @@ input:focus {
 }
 
 #search-icon {
-    color: gray;
+    color: black;
 }
   
 .profile-icon {
@@ -111,9 +120,22 @@ input:focus {
 .rest-button:hover {
     background-color: orange;
 }
-  
+
+.container-wrapper {
+    display: flex;
+    width: 100vw; 
+}
+
+.testimonial-container,
+.deals-container {
+    flex: 1;
+}
 
 .deals-container {
+    flex: .5;
+    max-width: 50%;
+    justify-content: center;
+    align-items: center;
     position: relative;
     margin-bottom: 20px;
 }

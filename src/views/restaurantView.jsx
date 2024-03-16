@@ -1,9 +1,12 @@
 import Button from "../Components/Button";
+import Deals from "../Components/Deal";
+import HeaderLogo from "../Components/HeaderLogo/HeaderLogo";
 import ProfileIcon from "../Components/ProfileIcon";
 import RestaurantImage from "../Components/RestaurantImage";
 import RestaurantInfo from "../Components/RestaurantInfo";
 import SearchBar from "../Components/SearchBar";
 import Testimonial from "../Components/Testimonial";
+import Taco from "../assets/Terrific-tacos.jpeg"
 import '../styling/restStyle.css';
 
 function RestaurantView() {
@@ -36,13 +39,15 @@ function RestaurantView() {
 
   return (
     <div className="app">
-        <div className="SearchBar-container">
-            <SearchBar />
-        </div>
-        <div className="Profile-container">
-            <ProfileIcon />
-        </div>
-        <div className="restaurant-content">
+      <div className="header-container">
+          <HeaderLogo />
+          <SearchBar />
+      </div>
+
+      <div className="Profile-container">
+        <ProfileIcon />
+      </div>
+      <div className="restaurant-content">
         <RestaurantInfo
           name={restaurantData.name}
           rating={restaurantData.rating}
@@ -52,11 +57,29 @@ function RestaurantView() {
         <RestaurantImage imageUrl={imageData.imageUrl} altText={imageData.altText} />
       </div>
       <div className="button-container">
-            {/* Use the Button component for menus and reservation placeholder*/}
-            <Button to="/menus" text="Menus" />
-            <Button to="/reservation" text="Reserve a Table" />
-          </div>
-          
+        {/* Use the Button component for menus and reservation placeholder*/}
+        <Button to="/menus" text="Menus" />
+        <Button to="/reservation" text="Reserve a Table" />
+      </div>
+      <div className="container-wrapper">
+        <div className="testimonial-container">
+          <h2>Testimonials</h2>
+            <Testimonial
+                text="Great food options on a low budget!"
+                rating="5 Stars"
+                author="Jose Caledron"
+            />
+            <Testimonial
+                text="An upgrade over UberEats fosho!!!"
+                rating="4 Stars"
+                author="Mike Mcquire"
+            />
+            <Testimonial
+                text="I'm impressed by the speed and reliability of this platform. It's been a game-changer for me."
+                rating="4 Stars"
+                author="Steve Parson"
+            />
+        </div>
 
           <div className="deals-container">
             {dealsData.map((deal, index) => (
@@ -68,28 +91,8 @@ function RestaurantView() {
                 description={deal.description}
               />
             ))}
+        </div>
       </div>
-
-      <div className="testimonial-container">
-                <h2>Testimonials</h2>
-                <Testimonial
-                    text="Great food options on a low budget!"
-                    rating="5 Stars"
-                    author="Jose Caledron"
-                />
-                <Testimonial
-                    text="An upgrade over UberEats fosho!!!"
-                    rating="4 Stars"
-                    author="Mike Mcquire"
-                />
-                <Testimonial
-                    text="I'm impressed by the speed and reliability of this platform. It's been a game-changer for me."
-                    rating="4 Stars"
-                    author="Steve Parson"
-                />
-            </div>
-
-      
     </div>
   );
 }
