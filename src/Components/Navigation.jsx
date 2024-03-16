@@ -1,16 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types'
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import main_icon from '../assets/main-icon.png'
+import ProfileSlide from './RestaurantShower/ProfileSlide';
 
 function Navigation(props) {
 
+    const menuRef = useRef(null);
+    const profileRef = useRef(null);
+    
     const { callback } = props
     const [zipcodeEntry, setZipcodeEntry] = useState('');
+    const [isOpened, setIsOpen] = useState(false);
 
-    const email = localStorage.getItem('userid');
+    const userid = localStorage.getItem('userid');
 
     const handleChange = (event) => {
         setZipcodeEntry(event.target.value);
@@ -21,6 +26,25 @@ function Navigation(props) {
             callback(zipcodeEntry) 
         }
     }
+
+    const handleOpen = () => {
+        setIsOpen(!isOpened);
+    }
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (menuRef.current && profileRef &&
+            !menuRef.current.contains(event.target) && 
+            !profileRef.current.contains(event.target)) {
+          setIsOpen(false);
+        }
+      };
+  
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []);
 
     return (
         <>
@@ -80,11 +104,11 @@ function Navigation(props) {
                             </div>
                         </div>
                         <div className='flex flex-nowrap mr-10 items-center ml-2 box-border gap-2'>
-                            {email ? (
-                                <a className='decoration-inherit cursor-pointer'>
-                                <div className='max-w-full flex items-center justify-center flex-row'>
-                                    <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gray-300">
-                                        {/* Icon or content goes here */}
+                            {userid ? (
+                                <a className='decoration-inherit cursor-pointer' onClick={handleOpen}>
+                                <div className='max-w-full flex items-center justify-center flex-row' ref={profileRef}>
+                                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-300">
+                                        <FontAwesomeIcon icon={faUser} />
                                     </div>
                                 </div>
                             </a>
@@ -122,6 +146,11 @@ function Navigation(props) {
                     </div>
                 </div>
             </header>
+            {isOpened && userid && (
+                <div ref={menuRef}>
+                    <ProfileSlide />
+                </div>
+            )}
         </>
     );
 }
