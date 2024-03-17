@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios';
 
 import CategoryCard from './Components/RestaurantShower/CategoryCard.jsx'
@@ -18,6 +18,8 @@ import { BACKEND_URL } from './constants.js';
 function App() { //FFA500
 
   const [restaurantData, setRestaurantData] = useState(null);
+  const [categoryData, setcategoryData] = useState(null);
+
   const [activeFilter, setActiveFilter] = useState(false);
 
   const fetchRestaurantData = async (zipcode) => {
@@ -35,6 +37,18 @@ function App() { //FFA500
       console.error(error)
     }
   }
+
+  useEffect(() => {
+    const fetchCategoryData = async () => {
+      try {
+        const response = await axios.get(`${BACKEND_URL}/category`);
+        setcategoryData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchCategoryData();
+  }, [])
 
   const filterByCuisine = async (keyword) => {
     // ISSUE: If I click a filter then click another filter, the previous item is elimated and cannot satisfy the new filter
@@ -117,9 +131,15 @@ function App() { //FFA500
                       {restaurantData !== null && (
                         <>
                           {activeFilter ? (
-                              <CategoryCard restaurantList={restaurantData} />
+                              <CategoryCard restaurantList={restaurantData} structure='block' />
                           ) : (
-                              <CategoryCard categoryName='Top Picks' restaurantList={restaurantData} />
+                            <div>
+                              {Object.keys(categoryData).map((item, index) => (
+                                <CategoryCard categoryName={item} desc={categoryData[item]['description']} restaurantList={restaurantData} key={index}/>
+                              ))}
+                              {/* ON DEVELOPER EDITOR */}
+                              <CategoryCard categoryName='All Store' restaurantList={restaurantData} structure='block'/>
+                            </div>
                           )}
                         </>
                       )}
