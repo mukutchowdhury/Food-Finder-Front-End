@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './vendorForm.css';
+import '../styling/VendorForm.css';
 
 const VendorForm = () => {
     const [showForm, setShowForm] = useState(false);

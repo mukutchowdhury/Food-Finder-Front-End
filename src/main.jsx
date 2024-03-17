@@ -3,6 +3,7 @@ import App from './App.jsx';
 import AccessDenied from './views/Access-Denied.jsx';
 import AuthForm from './views/AuthForm.jsx';
 import LoginForm from './views/LoginForm.jsx';
+import VendorForm from './views/VendorForm.jsx';
 import CategoryAll from './views/categoryAll.jsx';
 import Settings from './views/developer-settings.jsx';
 import HomeView from './views/home';
@@ -23,7 +24,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path="/dev-settings/*" element={<Settings />} />
       <Route path='/restaurant/:id' element={<RestaurantView/>}/>
       <Route path='access-denied' element={<AccessDenied/>}/>
-      {/* <Route path = 'vendorform' element = {<VendorForm/>}/> */}
+      <Route path = 'vendorform' element = {<VendorForm/>}/>
   </Route>
 ));
 
