@@ -4,6 +4,7 @@ import LoginForm from './views/LoginForm.jsx'
 import AuthForm from './views/AuthForm.jsx'
 import App from './App.jsx';
 import RestaurantView from './views/restaurantView.jsx';
+import MenuView from './views/menuView.jsx';
 
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import './index.css';
@@ -14,7 +15,10 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path='/home' element={<HomeView/>}/>
       <Route path='/signin' element={<LoginForm/>}/> 
       <Route path='/signup' element={<AuthForm/>}/> 
+      {/* <Route path='/RestaurantView/:id' element={<RestaurantView/>}/> */}
       <Route path='/RestaurantView' element={<RestaurantView/>}/>
+      <Route path='/menuView' element={<MenuView/>}/>
+
   </Route>
 ));
 
