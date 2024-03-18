@@ -1,33 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types'
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useRef, useState } from 'react';
 
 import main_icon from '../assets/main-icon.png'
 import ProfileSlide from './RestaurantShower/ProfileSlide';
 
-function Navigation(props) {
+function SettingNav() {
 
     const menuRef = useRef(null);
     const profileRef = useRef(null);
     
-    const { callback } = props
-    const [zipcodeEntry, setZipcodeEntry] = useState('');
     const [isOpened, setIsOpen] = useState(false);
-
     const [pimage, setPimage] = useState(null);
-
     const userid = localStorage.getItem('userid');
-
-    const handleChange = (event) => {
-        setZipcodeEntry(event.target.value);
-    }
-
-    const handleSubmit = (event) => {
-        if (event.keyCode === 13) {
-            callback(zipcodeEntry) 
-        }
-    }
 
     const handleOpen = () => {
         setIsOpen(!isOpened);
@@ -72,39 +57,32 @@ function Navigation(props) {
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    <div className='mr-[0px] justify-end items-center max-w-full w-full flex box-border flex-row'>
-                        <div className='max-w-[460px] pr-0 box-border' style={{width: "inherit"}}>
-                            <div className='box-border'>
-                                <div className='box-border'>
-                                    <div className='px-4 py-0 relative box-border'>
-                                        <div className='w-full box-border cursor-text'>
-                                            <div className='max-w-full box-border'>
-                                                <div className='flex min-h-10 box-border'>
-                                                    <div className='text-base font-medium tracking-normal text-gray-900 flex items-center w-full rounded-full z-10 px-3 py-2 border bg-gray-200 shadow-inner pr-2 box-border'>
-                                                        <div className='max-w-full mr-3 box-border'>
-                                                            <div className='flex justify-center items-center ml-2 mr-[2px] box-border'>
-                                                                <FontAwesomeIcon icon={faSearch} />
+                        <div className='flex justify-center items-center min-w-0 ml-4'>
+                            <div>
+                                <div>
+                                    <div className='inline-flex'>
+                                        <span className='block flex-grow max-w-full'>
+                                            <span className='max-w-full flex items-center justify-center flex-row'>
+                                                <span className='flex-grow-[2] min-w-0 flex justify-center'>
+                                                    <span className='w-full text-base font-bold transform-none text-center m-0 p-0 block'>
+                                                        <div className='max-w-full flex items-stretch justify-start flex-row'>
+                                                            <div className='max-w-full flex items-center justify-start flex-row'>
+                                                                <span className='max-w-full text-base font-bold transform-none text-left mt-1 p-0 block text-[#767676] overflow-hidden text-ellipsis flex-nowrap'>
+                                                                    DEVELOPER
+                                                                </span>
                                                             </div>
                                                         </div>
-                                                        <div className='flex-grow bg-inherit max-w-full mt-0 mr-auto box-border'>
-                                                            <input className='text-ellipsis text-base font-medium tracking-normal w-full border outline-none flex-1 bg-transparent appearance-none m-0 p-0 box-border' 
-                                                                type='text'
-                                                                placeholder='Search stores, dishes, products'
-                                                                value={zipcodeEntry}
-                                                                onChange={handleChange}
-                                                                onKeyDown={handleSubmit}
-                                                                maxLength={5}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+                    </div>
+                    <div className='mr-[0px] justify-end items-center max-w-full w-full flex box-border flex-row'>
                         <div className='flex flex-nowrap mr-10 items-center ml-2 box-border gap-2'>
                             {userid ? (
                                 <a className='decoration-inherit cursor-pointer' onClick={handleOpen}>
@@ -166,8 +144,4 @@ function Navigation(props) {
     );
 }
 
-Navigation.propTypes = {
-    callback: PropTypes.string,
-};
-
-export default Navigation;
+export default SettingNav;
