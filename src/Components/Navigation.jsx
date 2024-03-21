@@ -15,7 +15,7 @@ function Navigation(props) {
     const [zipcodeEntry, setZipcodeEntry] = useState('');
     const [isOpened, setIsOpen] = useState(false);
 
-    const [pimage, setPimage] = useState(null);
+    const [pimage, setPimage] = useState('');
 
     const userid = localStorage.getItem('userid');
 
@@ -109,7 +109,7 @@ function Navigation(props) {
                             {userid ? (
                                 <a className='decoration-inherit cursor-pointer' onClick={handleOpen}>
                                 <div className='max-w-full flex items-center justify-center flex-row' ref={profileRef}>
-                                    {pimage === null ? (
+                                    {pimage === '' ? (
                                         <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-300">
                                             <div className="w-[36px] h-[36px] rounded-full flex items-center justify-center bg-gray-300">
                                                 <FontAwesomeIcon icon={faUser} />
@@ -167,7 +167,7 @@ function Navigation(props) {
 }
 
 Navigation.propTypes = {
-    callback: PropTypes.string,
+    callback: PropTypes.func.isRequired,
 };
 
 export default Navigation;
