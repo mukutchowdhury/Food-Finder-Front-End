@@ -21,7 +21,7 @@ function App() { //FFA500
   const [restaurantData, setRestaurantData] = useState(null);
   const [categoryData, setcategoryData] = useState(null);
   const [activeFilter, setActiveFilter] = useState(false);
-  const [zipcode, setZipcode] = useState(null)
+  const [zipcode, setZipcode] = useState(localStorage.getItem('zipcode'))
 
   const navigate = useNavigate();
 
