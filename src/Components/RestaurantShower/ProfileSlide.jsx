@@ -15,7 +15,8 @@ function ProfileSlide(props) {
     const userid = localStorage.getItem('userid');
 
     const [name, setName] = useState('');
-    const [pimage, setPimage] = useState('null');
+    const [pimage, setPimage] = useState('');
+    const [privilege, setPrivilege] = useState(0);
 
     const { imageCallback } = props;
 
@@ -27,6 +28,15 @@ function ProfileSlide(props) {
             navigate('/');
         }
     }
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const response = await axios.get(`${BACKEND_URL}/user/${userid}`);
+            setPrivilege(response.data.privilege);
+        }
+        fetchUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [userid]);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -45,7 +55,7 @@ function ProfileSlide(props) {
                 <div className='max-w-full px-4 py-2 flex flex-col gap-3'>
                     <div className='max-w-full bg-white flex items-center gap-4 py-4 px-3 rounded-md shadow-lg shadow-slate-300'>
                         <div className='max-w-full flex items-center justify-center flex-row'>
-                            {pimage === 'null' ? (
+                            {pimage === '' ? (
                                 <div className="w-[36px] h-[36px] rounded-full flex items-center justify-center bg-gray-300">
                                     <FontAwesomeIcon icon={faUser} />
                                 </div>
@@ -61,6 +71,7 @@ function ProfileSlide(props) {
                         </div>
                     </div>
                     <div className='max-w-full mt-2'>
+                        {privilege !== 0 && (
                         <a href='/dev-settings'>
                         <div className='max-w-full rounded-md bg-white hover:bg-zinc-100 cursor-pointer'>
                             <div className='max-w-full flex items-center gap-4 p-2'>
@@ -77,6 +88,7 @@ function ProfileSlide(props) {
                             </div>
                         </div>
                         </a>
+                        )}
                         <div className='max-w-full rounded-md bg-white hover:bg-zinc-100 cursor-pointer'>
                             <div className='max-w-full flex items-center gap-4 p-2'>
                                 <div className='max-w-full flex items-center justify-center flex-row'>
@@ -114,7 +126,7 @@ function ProfileSlide(props) {
 }
 
 ProfileSlide.propTypes = {
-    imageCallback: PropTypes.string,
+    imageCallback: PropTypes.func,
 };
 
 export default ProfileSlide;
