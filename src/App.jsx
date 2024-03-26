@@ -164,6 +164,9 @@ function App() { //FFA500
           </div>
         </div>
       </div>
+      <footer className='w-full h-[5vh] flex justify-center items-center bg-zinc-950'>
+        <span className='text-center text-sm font-bold text-gray-400'>By &copy;afanc0</span>
+      </footer>
     </>
   )
 }
