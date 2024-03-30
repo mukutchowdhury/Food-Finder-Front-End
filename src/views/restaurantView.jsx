@@ -17,6 +17,7 @@ function RestaurantView() {
     const { id } = useParams();
     const [error, setError] = useState('');
     const [restaurantData, setRestaurantData] = useState(null);
+    const [hoursData, setHoursData] = useState(null);
 
     useEffect(() => {
         const fetchRestaurantData = async () => {
@@ -30,25 +31,32 @@ function RestaurantView() {
         fetchRestaurantData();
     }, [id]);
 
-    const imageData = {
-        imageUrl: Taco,
-        altText: 'Restaurant Image',
-    };
+    useEffect(() => {
+      const fetchHoursData = async () => {
+          try {
+              const response = await axios.get(`${BACKEND_URL}/hour/${id}`);
+              setHoursData(response.data);
+          } catch (error) {
+              setError('Error fetching hours data');
+          }
+      };
+      fetchHoursData();
+  }, [id]);
 
     const dealsData = [
-        {
-            imageUrl: Taco,
-            altText: 'Deal 1',
-            title: 'Special Offer 1',
-            description: 'Take 30% off your first order',
-        },
-        {
-            imageUrl: Taco,
-            altText: 'Deal 2',
-            title: 'Discounted Menu',
-            description: 'Buy one taco get one free',
-        },
-    ];
+      {
+          imageUrl: restaurantData ? restaurantData.image : '',
+          altText: 'Deal 1',
+          title: 'Special Offer 1',
+          description: 'Take 30% off your first order',
+      },
+      {
+          imageUrl: restaurantData ? restaurantData.image : '',
+          altText: 'Deal 2',
+          title: 'Discounted Menu',
+          description: 'Buy one taco get one free',
+      },
+  ];
 
     return (
         <div className="app">
@@ -68,9 +76,9 @@ function RestaurantView() {
                             name={restaurantData.name}
                             rating={restaurantData.rating}
                             address={restaurantData.address}
-                            hours={restaurantData.hours}
+                            hours={hoursData ? `${hoursData.open_time} - ${hoursData.close_time}` : ''}
                         />
-                        <RestaurantImage imageUrl={imageData.imageUrl} altText={imageData.altText} />
+                        <RestaurantImage imageUrl={restaurantData.image} altText="Restaurant Image" />
                     </>
                 )}
             </div>
