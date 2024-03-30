@@ -19,16 +19,13 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path='/home' element={<HomeView/>}/>
       <Route path='/signin' element={<LoginForm/>}/> 
       <Route path='/signup' element={<AuthForm/>}/> 
-      {/* <Route path='/RestaurantView/:id' element={<RestaurantView/>}/> */}
-      <Route path='/RestaurantView' element={<RestaurantView/>}/>
       <Route path='/category/:name' element={<CategoryAll/>}/>
       <Route path='/dev-settings' element={<Settings/>}/>
       <Route path="/dev-settings/*" element={<Settings />} />
       <Route path='/restaurant/:id' element={<RestaurantView/>}/>
       <Route path='access-denied' element={<AccessDenied/>}/>
       <Route path = 'vendorform' element = {<VendorForm/>}/>
-      <Route path='/menuView' element={<MenuView/>}/>
-
+      <Route path='/menuView/:restaurantId' element={<MenuView/>}/>
   </Route>
 ));
 
