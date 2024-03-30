@@ -15,7 +15,7 @@ function Navigation(props) {
     const [zipcodeEntry, setZipcodeEntry] = useState('');
     const [isOpened, setIsOpen] = useState(false);
 
-    const [pimage, setPimage] = useState(null);
+    const [pimage, setPimage] = useState('');
 
     const userid = localStorage.getItem('userid');
 
@@ -55,7 +55,7 @@ function Navigation(props) {
                     <div className='ml-16 max-w-full flex items-center justify-center flex-row'>
                         <div className='max-w-full flex items-stretch justify-start flex-row'>
                             <div className='flex-1 justify-center relative right-0 left-0 mt-auto mb-auto mr-24 ml-0 bg-gradient-to-r from-transparent via-white to-white'>
-                                <a href={'/'} className='decoration-inherit cursor-pointer'>
+                                <a href={'/home'} className='decoration-inherit cursor-pointer'>
                                     <div className='max-w-full flex items-center justify-center flex-row'>
                                         <img className='block w-14 h-14 object-cover box-border' src={main_icon} style={{ objectPosition: '50% 50%' }} ></img>
                                         <div className='ml-2'>
@@ -90,7 +90,7 @@ function Navigation(props) {
                                                         <div className='flex-grow bg-inherit max-w-full mt-0 mr-auto box-border'>
                                                             <input className='text-ellipsis text-base font-medium tracking-normal w-full border outline-none flex-1 bg-transparent appearance-none m-0 p-0 box-border' 
                                                                 type='text'
-                                                                placeholder='Search stores, dishes, products'
+                                                                placeholder='Enter zipcode'
                                                                 value={zipcodeEntry}
                                                                 onChange={handleChange}
                                                                 onKeyDown={handleSubmit}
@@ -109,7 +109,7 @@ function Navigation(props) {
                             {userid ? (
                                 <a className='decoration-inherit cursor-pointer' onClick={handleOpen}>
                                 <div className='max-w-full flex items-center justify-center flex-row' ref={profileRef}>
-                                    {pimage === null ? (
+                                    {pimage === '' ? (
                                         <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-300">
                                             <div className="w-[36px] h-[36px] rounded-full flex items-center justify-center bg-gray-300">
                                                 <FontAwesomeIcon icon={faUser} />
@@ -167,7 +167,7 @@ function Navigation(props) {
 }
 
 Navigation.propTypes = {
-    callback: PropTypes.string,
+    callback: PropTypes.func.isRequired,
 };
 
 export default Navigation;

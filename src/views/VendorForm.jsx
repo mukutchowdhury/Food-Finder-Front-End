@@ -15,6 +15,9 @@ const VendorForm = () => {
                 <p>Restaurant Name: Restaurant Name 1</p>
                 <p>Address: 123 Main St</p>
                 <p>Phone: (123) 456-7890</p>
+                {/* Additional information */}
+                <p>Opening Hours: Monday-Saturday: 9am-10pm, Sunday: 10am-8pm</p>
+                <p>Cuisine Type: Italian</p>
                 <button className="edit-btn" onClick={handleEditClick}>Edit</button>
             </div>
 

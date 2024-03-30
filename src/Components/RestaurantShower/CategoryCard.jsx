@@ -110,7 +110,7 @@ function CategoryCard(props) {
                         {arrayifyFilterRestaurant().map((item, index) => (
                             <RestaurantCard restaurantInfo={filterData[item]} key={index}/>
                         ))}
-                        {console.log(filterData)}
+                        {/* {console.log(filterData)} */}
                     </div>
                 )}
             </div>

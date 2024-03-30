@@ -14,8 +14,8 @@ import { BACKEND_URL } from "../constants";
 
 function Settings() {
     const userid = localStorage.getItem('userid');
-    const [pimage, setPimage] = useState('null');
-    const [email, setEmail] = useState('null');
+    const [pimage, setPimage] = useState('');
+    const [email, setEmail] = useState('');
     const [privilege, setPrivilege] = useState(0);
 
     const location = useLocation();
@@ -51,7 +51,7 @@ function Settings() {
                     <div className='max-w-full flex justify-start'>
                         <div className='max-w-full px-4 py-4'>
                             <div className='w-56 h-56 border-[2px] rounded-2xl border-black'>
-                                {pimage === 'null' ? (
+                                {pimage === '' ? (
                                     <div className="w-full h-full flex rounded-2xl items-center justify-center bg-gray-300">
                                         <FontAwesomeIcon icon={faUser} />
                                     </div>

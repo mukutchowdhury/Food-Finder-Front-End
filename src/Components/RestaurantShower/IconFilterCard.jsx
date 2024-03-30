@@ -24,8 +24,8 @@ function IconFilterCard(props) {
 
 IconFilterCard.propTypes = {
     filterName: PropTypes.string.isRequired,
-    filterImage: PropTypes.object.isRequired,
-    callback: PropTypes.object.isRequired,
+    filterImage: PropTypes.string.isRequired,
+    callback: PropTypes.func.isRequired,
 };
 
 export default IconFilterCard;

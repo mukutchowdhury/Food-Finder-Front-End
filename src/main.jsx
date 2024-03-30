@@ -15,8 +15,8 @@ import './index.css';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route>
-      <Route index element={<App />} />
-      <Route path='/home' element={<HomeView/>}/>
+      <Route index element={<HomeView />} />
+      <Route path='/home' element={<App/>}/>
       <Route path='/signin' element={<LoginForm/>}/> 
       <Route path='/signup' element={<AuthForm/>}/> 
       <Route path='/category/:name' element={<CategoryAll/>}/>

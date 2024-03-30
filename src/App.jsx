@@ -14,29 +14,16 @@ import ital_icon from './assets/ital-icon.png'
 
 import { faTag } from '@fortawesome/free-solid-svg-icons';
 import { BACKEND_URL } from './constants.js';
+import { useNavigate } from 'react-router-dom';
 
 function App() { //FFA500
 
   const [restaurantData, setRestaurantData] = useState(null);
   const [categoryData, setcategoryData] = useState(null);
-
   const [activeFilter, setActiveFilter] = useState(false);
+  const [zipcode, setZipcode] = useState(localStorage.getItem('zipcode'))
 
-  const fetchRestaurantData = async (zipcode) => {
-    try {
-      console.log(`${BACKEND_URL}restaurant/all`);
-      if (zipcode.length === 0) {
-        const response = await axios.get(`${BACKEND_URL}/restaurant/all`);
-        setRestaurantData(response.data)
-      } else {
-        const response = await axios.get(`${BACKEND_URL}/restaurants/by-zipcode/${zipcode}`);
-        setRestaurantData(response.data)
-      }
-      setActiveFilter(false);
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCategoryData = async () => {
@@ -49,6 +36,32 @@ function App() { //FFA500
     }
     fetchCategoryData();
   }, [])
+
+  const fetchRestaurantData = async (zip) => {
+    try {
+      if (zip !== zipcode) {
+        localStorage.setItem('zipcode', zip);
+        navigate(0);
+      }
+      const response = await axios.get(`${BACKEND_URL}/restaurants/by-zipcode/${zipcode}`);
+      setRestaurantData(response.data)
+      setActiveFilter(false);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    const localZipcode = () => {
+      const localZip = localStorage.getItem('zipcode');
+      if (localZip !== null) {
+        setZipcode(localZip);
+        fetchRestaurantData(zipcode);
+      }
+    }
+    localZipcode();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zipcode])
 
   const filterByCuisine = async (keyword) => {
     // ISSUE: If I click a filter then click another filter, the previous item is elimated and cannot satisfy the new filter
@@ -100,7 +113,7 @@ function App() { //FFA500
                         <span className='leading-8 text-2xl font-bold tracking-tighter text-left m-0 p-0 block text-[#191919]'>{Object.keys(restaurantData || []).length} results</span>
                         <button className='ml-6 relative max-w-full m-0 p-0 inline-flex min-h-8 w-auto bg-gray-200 items-center justify-start rounded-3xl cursor-pointer select-none text-center text-[#191919]' 
                         style={{boxShadow:"rgb(231, 231, 231) 0px 0px 0px 1px inset",textDecoration: "none", border:"medium" }}
-                        onClick={() => fetchRestaurantData('')}>
+                        onClick={() => fetchRestaurantData(zipcode)}>
                           <span className='block flex-grow max-w-full opacity-100 px-3 py-0'>
                             <span className='max-w-full flex items-center justify-center flex-row'>
                               <span className='flex-grow-[2] min-w-0 flex justify-center'>
@@ -151,6 +164,9 @@ function App() { //FFA500
           </div>
         </div>
       </div>
+      <footer className='w-full h-[5vh] flex justify-center items-center bg-zinc-950'>
+        <span className='text-center text-sm font-bold text-gray-400'>By &copy;afanc0</span>
+      </footer>
     </>
   )
 }

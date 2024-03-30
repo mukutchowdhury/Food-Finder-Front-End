@@ -1,20 +1,27 @@
 .vendor-form-container {
     font-family: Arial, sans-serif;
     padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
     margin-bottom: 20px;
+    color: #333;
 }
 
 .restaurant-box {
     border: 1px solid #ccc;
+    border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
+    background-color: #fff;
 }
 
 .restaurant-box p {
     margin: 0;
+    color: #555;
 }
 
 .edit-btn {
@@ -24,6 +31,7 @@ h2 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .edit-btn:hover {
@@ -41,6 +49,13 @@ h2 {
     margin-bottom: 10px;
 }
 
+.edit-form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 .edit-form button {
     background-color: #4CAF50;
     color: white;
@@ -48,6 +63,7 @@ h2 {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .edit-form button:hover {
