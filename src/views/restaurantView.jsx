@@ -18,6 +18,7 @@ function RestaurantView() {
     const [error, setError] = useState('');
     const [restaurantData, setRestaurantData] = useState(null);
     const [hoursData, setHoursData] = useState(null);
+    const [reviewsData, setReviewsData] = useState(null);
 
     useEffect(() => {
         const fetchRestaurantData = async () => {
@@ -42,6 +43,26 @@ function RestaurantView() {
       };
       fetchHoursData();
   }, [id]);
+
+    useEffect(() => {
+      const fetchReviewsData = async () => {
+          try {
+              const response = await axios.get(`${BACKEND_URL}/review/${id}`);
+              setReviewsData(response.data);
+          } catch (error) {
+              setError('Error fetching reviews data');
+          }
+      };
+      fetchReviewsData();
+  }, [id]);
+
+  const calculateAverageRating = () => {
+    if (reviewsData && reviewsData.review.length > 0) {
+        const totalStars = reviewsData.review.reduce((acc, review) => acc + review.star, 0);
+        return totalStars / reviewsData.review.length;
+    }
+    return null; 
+};
 
     const dealsData = [
       {
@@ -74,8 +95,9 @@ function RestaurantView() {
                     <>
                         <RestaurantInfo
                             name={restaurantData.name}
-                            rating={restaurantData.rating}
+                            rating={calculateAverageRating()}
                             address={restaurantData.address}
+                            phone={restaurantData.phone}
                             hours={hoursData ? `${hoursData.open_time} - ${hoursData.close_time}` : ''}
                         />
                         <RestaurantImage imageUrl={restaurantData.image} altText="Restaurant Image" />
