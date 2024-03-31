@@ -9,7 +9,6 @@ import RestaurantImage from "../Components/RestaurantImage";
 import RestaurantInfo from "../Components/RestaurantInfo";
 import SearchBar from "../Components/SearchBar";
 import Testimonial from "../Components/Testimonial";
-import Taco from "../assets/Terrific-tacos.jpeg";
 import { BACKEND_URL } from "../constants.js";
 import { useParams } from 'react-router-dom';
 
