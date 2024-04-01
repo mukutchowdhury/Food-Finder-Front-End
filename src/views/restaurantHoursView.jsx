@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import '../styling/restaurantHourStyle.css';
+import '../styling/restaurantHourStyle.css';
 
 function RestaurantHourView() {
     // forms
