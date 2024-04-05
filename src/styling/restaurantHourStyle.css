@@ -1,6 +1,6 @@
-/* reviewDeletionStyle.css */
+/* restaurantHourStyle.css */
 
-.deletion-form-container {
+.registration-form-container {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
@@ -9,17 +9,17 @@
     background-color: #f9f9f9;
 }
 
-.deletion-form-container h2 {
+.registration-form-container h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.deletion-form-container label {
+.registration-form-container label {
     display: block;
     margin-bottom: 10px;
 }
 
-.deletion-form-container input[type="text"] {
+.registration-form-container input[type="text"] {
     width: calc(100% - 20px);
     padding: 8px;
     margin-top: 5px;
@@ -28,7 +28,7 @@
     border-radius: 3px;
 }
 
-.deletion-form-container button {
+.registration-form-container button {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
@@ -39,7 +39,7 @@
     transition: background-color 0.3s ease;
 }
 
-.deletion-form-container button:hover {
+.registration-form-container button:hover {
     background-color: #0056b3;
 }
 

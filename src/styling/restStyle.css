@@ -4,74 +4,23 @@
     width: 100vw;
 }
 
-.header-container {
-    display: flex;
-    align-items: center;
+.stars {
+    display: inline-block;
 }
 
-.header-logo {
-    width: 6rem;
-    height: auto; 
-    margin-right: 8px;
+.star {
+    font-size: 30px; 
+    color: #FFD700; 
 }
 
-.SearchBar-container {
-    padding-top: 3vh;
-    margin: auto;
-    display: flex;
-    align-items: center; /* Align items vertically */
+.filled {
+    color: #FFD700;
 }
 
-.searchInput {
-    border: none;
-    outline: none;
-    width: 200px;
-    margin-right: 8px;
-}
-
-.searchIcon {
-color: black;
-}
-
-.input-wrapper {
-    background-color: lightgray;
-    width: 500px;
-    max-width: 100%;
-    border-radius: 10px;
-    height: 2.5rem;
-    padding: 0 15px;
-    box-shadow: 0px 0px 8px #ddd;
-    display: flex;
-    align-items: center;
-}
-
-input {
-    background-color: transparent;
-    border: none;
-    height: 100%;
-    font-size: 1.25rem;
-    width: 100%;
-    margin-left: 5px;
-}
-
-input:focus {
-    outline: none;
-}
-
-#search-icon {
-    color: black;
+.empty {
+    color: #DDD;
 }
   
-.profile-icon {
-    position: fixed;
-    top: 10px; 
-    right: 50px; 
-    font-size: 30px; 
-    color: black; 
-    padding-top: 1vh;
-}
-
-
 .restaurant-content {
     display: flex;
     width: 100vw; 
@@ -82,6 +31,11 @@ input:focus {
     padding: 20px;
     box-sizing: border-box;
     flex: 1;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    font-size: 1.2rem;
 }
 
 .restaurant-info h2 {
@@ -101,14 +55,15 @@ input:focus {
     object-fit: cover;
 }
 
-
 .button-container {
     display: flex;
+    justify-content: space-around;
     gap: 10px;
     margin-top: 20px;
 }
 
 .rest-button {
+    flex-grow: 1; 
     background-color: orange;
     color: #fff;
     padding: 10px;
@@ -118,7 +73,7 @@ input:focus {
 }
 
 .rest-button:hover {
-    background-color: orange;
+    background-color: #ffa500; 
 }
 
 .container-wrapper {
