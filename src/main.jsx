@@ -25,7 +25,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path='/restaurant/:id' element={<RestaurantView/>}/>
       <Route path='access-denied' element={<AccessDenied/>}/>
       <Route path = 'vendorform' element = {<VendorForm/>}/>
-      <Route path='/menuView/:restaurantId' element={<MenuView/>}/>
+      <Route path='/menu/:id' element={<MenuView/>}/>
   </Route>
 ));
 

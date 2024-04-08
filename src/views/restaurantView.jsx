@@ -20,7 +20,7 @@ function RestaurantView() {
     const [hoursData, setHoursData] = useState(null);
     const [reviewsData, setReviewsData] = useState([]);
 
-
+    
     useEffect(() => {
         const fetchRestaurantData = async () => {
             try {
@@ -106,7 +106,7 @@ function RestaurantView() {
                 )}
             </div>
             <div className="button-container">
-                <Button to="/menuView" restaurantId={id} text="View Menu" />
+                <Button to={`/menu/${id}`} text="View Menu" />
                 <Button to="/reservation" text="Reserve a Table" />
             </div>
             <div className="container-wrapper">
