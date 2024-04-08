@@ -78,16 +78,50 @@
 
 .container-wrapper {
     display: flex;
-    width: 100vw; 
+    flex-wrap: wrap;
+    gap: 20px; 
 }
 
-.testimonial-container,
+.container-wrapper > div {
+    flex: 1; 
+    min-width: 0; 
+}
+
+.review-container {
+    width: 100%; 
+}
+
 .deals-container {
+    width: 100%; 
+}
+
+
+.review-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex: 1;
+    width: 100%;
+}
+
+.review-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.review-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%; 
 }
 
 .deals-container {
-    flex: .5;
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+    width: 100%;
     max-width: 50%;
     justify-content: center;
     align-items: center;
@@ -115,7 +149,6 @@
     margin-bottom: 10px;
 }
 
-    .deals-description {
+.deals-description {
     font-size: 1rem;
 }
-  

@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Stars({ rating }) {
-    const filledStars = Math.round(rating * 5 / 10);
+    const filledStars = Math.round(rating); 
     const starsArray = [];
 
     for (let i = 0; i < filledStars; i++) {

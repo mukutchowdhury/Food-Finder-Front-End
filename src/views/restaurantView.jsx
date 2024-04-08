@@ -7,6 +7,7 @@ import Navigation from "../Components/Navigation";
 import ProfileIcon from "../Components/ProfileIcon";
 import RestaurantImage from "../Components/RestaurantImage";
 import RestaurantInfo from "../Components/RestaurantInfo";
+import RestaurantReview from "../Components/RestaurantReview.jsx";
 import SearchBar from "../Components/SearchBar";
 import Testimonial from "../Components/Testimonial";
 import { BACKEND_URL } from "../constants.js";
@@ -17,7 +18,8 @@ function RestaurantView() {
     const [error, setError] = useState('');
     const [restaurantData, setRestaurantData] = useState(null);
     const [hoursData, setHoursData] = useState(null);
-    const [reviewsData, setReviewsData] = useState(null);
+    const [reviewsData, setReviewsData] = useState([]);
+
 
     useEffect(() => {
         const fetchRestaurantData = async () => {
@@ -44,24 +46,24 @@ function RestaurantView() {
   }, [id]);
 
     useEffect(() => {
-      const fetchReviewsData = async () => {
-          try {
-              const response = await axios.get(`${BACKEND_URL}/review/${id}`);
-              setReviewsData(response.data);
-          } catch (error) {
-              setError('Error fetching reviews data');
-          }
-      };
-      fetchReviewsData();
-  }, [id]);
+        const fetchReviewsData = async () => {
+        try {
+            const response = await axios.get(`${BACKEND_URL}/review/${id}`);
+            setReviewsData(response.data.review); 
+        } catch (error) {
+            setError('Error fetching reviews data');
+        }
+        };
+        fetchReviewsData();
+    }, [id]);
 
-  const calculateAverageRating = () => {
-    if (reviewsData && reviewsData.review.length > 0) {
-        const totalStars = reviewsData.review.reduce((acc, review) => acc + review.star, 0);
-        return totalStars / reviewsData.review.length;
-    }
-    return null; 
-};
+    const calculateAverageRating = () => {
+        if (reviewsData && reviewsData.length > 0) {
+            const totalStars = reviewsData.reduce((acc, review) => acc + review.star, 0);
+            return totalStars / reviewsData.length;
+        }
+        return null;
+    };    
 
     const dealsData = [
       {
@@ -108,23 +110,9 @@ function RestaurantView() {
                 <Button to="/reservation" text="Reserve a Table" />
             </div>
             <div className="container-wrapper">
-                <div className="testimonial-container">
-                    <h2>Testimonials</h2>
-                    <Testimonial
-                        text="Great food options on a low budget!"
-                        rating="5 Stars"
-                        author="Jose Caledron"
-                    />
-                    <Testimonial
-                        text="An upgrade over UberEats fosho!!!"
-                        rating="4 Stars"
-                        author="Mike Mcquire"
-                    />
-                    <Testimonial
-                        text="I'm impressed by the speed and reliability of this platform. It's been a game-changer for me."
-                        rating="4 Stars"
-                        author="Steve Parson"
-                    />
+                <div>
+                {error && <div>{error}</div>}
+                <RestaurantReview reviews={reviewsData} />
                 </div>
                 <div className="deals-container">
                     {dealsData.map((deal, index) => (
