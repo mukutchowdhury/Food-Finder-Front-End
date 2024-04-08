@@ -147,11 +147,15 @@ function App() { //FFA500
                               <CategoryCard restaurantList={restaurantData} structure='block' />
                           ) : (
                             <div>
-                              {Object.keys(categoryData).map((item, index) => (
-                                <CategoryCard categoryName={item} desc={categoryData[item]['description']} restaurantList={restaurantData} key={index}/>
-                              ))}
-                              {/* ON DEVELOPER EDITOR */}
-                              <CategoryCard categoryName='All Store' restaurantList={restaurantData} structure='block'/>
+                              {categoryData !== null && (
+                                <>
+                                {Object.keys(categoryData).map((item, index) => (
+                                  <CategoryCard categoryName={item} desc={categoryData[item]['description']} restaurantList={restaurantData} key={index}/>
+                                ))}
+                                {/* ON DEVELOPER EDITOR */}
+                                <CategoryCard categoryName='All Store' restaurantList={restaurantData} structure='block'/>
+                                </>
+                              )}
                             </div>
                           )}
                         </>
@@ -164,8 +168,8 @@ function App() { //FFA500
           </div>
         </div>
       </div>
-      <footer className='w-full h-[5vh] flex justify-center items-center bg-zinc-950'>
-        <span className='text-center text-sm font-bold text-gray-400'>By &copy;afanc0</span>
+      <footer className='w-full h-[5vh] flex justify-center items-center bg-zinc-150'>
+        <span className='text-center text-sm font-bold text-gray-400'>&copy;afanc0</span>
       </footer>
     </>
   )
