@@ -8,8 +8,7 @@ import ProfileIcon from "../Components/ProfileIcon";
 import RestaurantImage from "../Components/RestaurantImage";
 import RestaurantInfo from "../Components/RestaurantInfo";
 import RestaurantReview from "../Components/RestaurantReview.jsx";
-import SearchBar from "../Components/SearchBar";
-import Testimonial from "../Components/Testimonial";
+import ReviewForm from "../Components/ReviewForm.jsx";
 import { BACKEND_URL } from "../constants.js";
 import { useParams } from 'react-router-dom';
 
@@ -114,6 +113,7 @@ function RestaurantView() {
                 {error && <div>{error}</div>}
                 <RestaurantReview reviews={reviewsData} />
                 </div>
+                <ReviewForm restaurantId={id} />
                 <div className="deals-container">
                     {dealsData.map((deal, index) => (
                         <Deals
