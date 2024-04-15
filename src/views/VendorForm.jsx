@@ -24,15 +24,19 @@ const VendorForm = () => {
                 <div className="options-boxes">
                     <div className="options-box">
                         <h4>Restaurant Management</h4>
+                        <p>Coming Soon</p>
                     </div>
                     <div className="options-box">
                         <h4>Review Management</h4>
+                        <p>Coming Soon</p>
                     </div>
                     <div className="options-box">
                         <h4>Reservation Management</h4>
+                        <p>Coming Soon</p>
                     </div>
                     <div className="options-box">
                         <h4>Analysis</h4>
+                        <p>Coming Soon</p>
                     </div>
                 </div>
             </div>
