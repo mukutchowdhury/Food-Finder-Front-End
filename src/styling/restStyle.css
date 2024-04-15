@@ -95,6 +95,41 @@
     width: 100%; 
 }
 
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 5px;
+}
+
+.form-submit {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #ffa500;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+}
 
 .review-container {
     display: flex;

@@ -108,12 +108,13 @@ function RestaurantView() {
                 <Button to={`/menu/${id}`} text="View Menu" />
                 <Button to="/reservation" text="Reserve a Table" />
             </div>
+            
             <div className="container-wrapper">
+            <ReviewForm restaurantId={id} />
                 <div>
                 {error && <div>{error}</div>}
                 <RestaurantReview reviews={reviewsData} />
                 </div>
-                <ReviewForm restaurantId={id} />
                 <div className="deals-container">
                     {dealsData.map((deal, index) => (
                         <Deals
