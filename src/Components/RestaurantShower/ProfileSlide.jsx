@@ -82,13 +82,14 @@ function ProfileSlide(props) {
                                 </div>
                                 <div className='max-w-full'>
                                     <span className='text-[.9375rem] leading-[1.3333] font-medium block text-black text-left overflow-hidden overflow-ellipsis whitespace-nowrap box-border select-none'>
-                                        Settings
+                                        Developer
                                     </span>
                                 </div>
                             </div>
                         </div>
                         </a>
                         )}
+                        <a href={`/vendor/${1}`}>
                         <div className='max-w-full rounded-md bg-white hover:bg-zinc-100 cursor-pointer'>
                             <div className='max-w-full flex items-center gap-4 p-2'>
                                 <div className='max-w-full flex items-center justify-center flex-row'>
@@ -103,6 +104,7 @@ function ProfileSlide(props) {
                                 </div>
                             </div>
                         </div>
+                        </a>
                         <div className='max-w-full rounded-md bg-white hover:bg-zinc-100 cursor-pointer' onClick={handleLogout}>
                             <div className='max-w-full flex items-center gap-4 p-2'>
                                 <div className='max-w-full flex items-center justify-center flex-row'>
