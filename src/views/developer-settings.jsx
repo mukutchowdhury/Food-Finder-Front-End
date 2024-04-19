@@ -9,6 +9,7 @@ import { faUser, faEdit, faUserEdit } from '@fortawesome/free-solid-svg-icons';
 
 import SettingsOption from "../Components/SettingsOption";
 import ManageCategory from "./ManageCategory";
+import ManageUser from "./ManageUser";
 
 import { BACKEND_URL } from "../constants";
 
@@ -75,6 +76,11 @@ function Settings() {
                             {showHash === "#manage-categories" && (
                                 <div className='max-w-full overflow-x-auto whitespace-nowrap'>
                                     <ManageCategory />
+                                </div>
+                            )}
+                            {showHash === "#user-management" && (
+                                <div className='max-w-full overflow-x-auto whitespace-nowrap'>
+                                    <ManageUser />
                                 </div>
                             )}
                         </div>
