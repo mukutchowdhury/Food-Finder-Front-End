@@ -75,7 +75,7 @@
 
 .edit-btn {
     background-color: #6ab04c;
-    color: white;
+    color: rgb(88, 52, 52);
     padding: 10px 16px;
     border: none;
     border-radius: 6px;
@@ -87,3 +87,5 @@
 .edit-btn:hover {
     background-color: #4f8f39;
 }
+
+
