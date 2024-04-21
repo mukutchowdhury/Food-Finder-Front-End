@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-//import '../styling/restaurantTrendingStyle.css';
+//import '../styling/userStyle.css';
 
-function RestaurantTrendingView() {
+function UserView() {
     // forms
     const [formdata, setFormData] = useState({
-        rest_id: '',
+        user_id: '',
 
     });
 
@@ -20,22 +20,22 @@ function RestaurantTrendingView() {
         e.preventDefault();
         console.log(formdata);
         setFormData({
-            rest_id: '',
+            user_id: '',
         });
     };
 
     return (
-        <div className="deletion-form-container">
-            <h2>Trending Restaurant</h2>
+        <div className="view-form-container">
+            <h2>User Data</h2>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Restaurant ID:
-                    <input type="text" name="rest_id" value={formdata.rest_id} onChange={handleInput} />
+                    User ID
+                    <input type="text" name="user_id" value={formdata.user_id} onChange={handleInput} />
                 </label>
-                <button type="submit">Add to Trending</button>
+                <button type="submit">View User Data</button>
             </form>
         </div>
     );
 }
 
-export default RestaurantTrendingView;
+export default UserView;

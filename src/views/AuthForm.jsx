@@ -11,11 +11,13 @@ import { BACKEND_URL } from '../constants.js';
 export default function AuthForm() {
 
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [respStatus, setRespStatus] = useState(null);
+
+    const [formData, setFormData] = useState({
+
+      });
+
+    const [formRender, setFormRender] = useState([]);
 
     const [redirect, setRedirect] = useState(true);
     useEffect(() => {
@@ -28,21 +30,31 @@ export default function AuthForm() {
         }
     }, [navigate]);
 
+    useEffect(() => {
+        const fetchForm = async () => {
+            try {
+                const result = await axios.get(`${BACKEND_URL}/user/signup-form`);
+                setFormRender(result.data)
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchForm();
+    }, []);
+
     const handleRedirect = () => navigate('/signin');
-    const handleEmailChange = (event) => setEmail(event.target.value);
-    const handlePasswordChange = (event) => setPassword(event.target.value);
-    const handleFNameChange = (event) => setFirstName(event.target.value);
-    const handleLNameChange = (event) => setLastName(event.target.value);
+
+    const handleInputChange = (e, fieldName) => {
+        setFormData({
+          ...formData,
+          [fieldName]: e.target.value
+        });
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post(`${BACKEND_URL}/user/signup`, {
-                "email": email,
-                "password": password,
-                "fname": firstName,
-                "lname": lastName
-            });
+            const response = await axios.post(`${BACKEND_URL}/user/signup`, formData);
             switch (response.data.status) {
                 case 'ok':
                     navigate('/signin');
@@ -86,96 +98,57 @@ export default function AuthForm() {
                                 <form onSubmit={handleSubmit}>
                                     <div className='max-w-full mb-4'>
                                         <div className='flex justify-between'>
-                                            <div className='w-[49%] flex'>
-                                                <div className='w-full'>
-                                                    <div className='max-w-full'>
-                                                        <div className='max-w-full flex justify-between items-end flex-row'>
-                                                            <label className='text-base font-bold text-[#191919] text-left m-0 p-0 block'>First Name</label>
-                                                        </div>
-                                                        <div className='flex min-h-10 mt-2'>
-                                                            <div className='text-base font-medium text-[#191919] flex items-center w-full rounded-lg z-[1] px-3 py-0 bg-[#F7F7F7]'>
-                                                                <div className='flex-grow bg-inherit max-w-full my-auto'>
-                                                                    <input 
-                                                                    type="text"
-                                                                    value={firstName}
-                                                                    onChange={handleFNameChange}
-                                                                    required
-                                                                    autoComplete="given-name" 
-                                                                    className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
-                                                                </div>
+                                            {formRender.slice(0, 2).map((value, index) => (
+                                                <div className='w-[49%] flex' key={index}>
+                                                    <div className='w-full'>
+                                                        <div className='max-w-full'>
+                                                            <div className='max-w-full flex justify-between items-end flex-row'>
+                                                                <label className='text-base font-bold text-[#191919] text-left m-0 p-0 block'>{value.question}</label>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className='w-[49%] flex'>
-                                                <div className='w-full'>
-                                                    <div className='max-w-full'>
-                                                        <div className='max-w-full flex justify-between items-end flex-row'>
-                                                            <label className='text-base font-bold text-[#191919] text-left m-0 p-0 block'>Last Name</label>
-                                                        </div>
-                                                        <div className='flex min-h-10 mt-2'>
-                                                            <div className='text-base font-medium text-[#191919] flex items-center w-full rounded-lg z-[1] px-3 py-0 bg-[#F7F7F7]'>
-                                                                <div className='flex-grow bg-inherit max-w-full my-auto'>
-                                                                    <input 
-                                                                        type="text"
-                                                                        value={lastName}
-                                                                        onChange={handleLNameChange}
+                                                            <div className='flex min-h-10 mt-2'>
+                                                                <div className='text-base font-medium text-[#191919] flex items-center w-full rounded-lg z-[1] px-3 py-0 bg-[#F7F7F7]'>
+                                                                    <div className='flex-grow bg-inherit max-w-full my-auto'>
+                                                                        <input 
+                                                                        type={value.type}
+                                                                        value={formData[value.fld_nm]}
+                                                                        onChange={(e) => handleInputChange(e, value.fld_nm)}
                                                                         required
                                                                         autoComplete="given-name" 
                                                                         className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
+                                                                    </div>
                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    {formRender.slice(2).map((value, index) => (
+                                        <div className='max-w-full mb-4' key={index}>
+                                            <div className='w-full'>
+                                                <div className='max-w-full'>
+                                                    <div className='max-w-full flex justify-between items-end flex-row'>
+                                                        <label className='text-base font-bold text-[#191919] text-left m-0 p-0 block'>{value.question}</label>
+                                                    </div>
+                                                    <div className='flex min-h-10 mt-2'>
+                                                        <div className='text-base font-medium text-[#191919] flex items-center w-full rounded-lg z-[1] px-3 py-0 bg-[#F7F7F7]'>
+                                                            <div className='flex-grow bg-inherit max-w-full my-auto'>
+                                                                <input 
+                                                                    type={value.type}
+                                                                    value={formData[value.fld_nm]}
+                                                                    onChange={(e) => handleInputChange(e, value.fld_nm)}
+                                                                    required
+                                                                    autoComplete="given-name" 
+                                                                    className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className='max-w-full mb-4'>
-                                        <div className='w-full'>
-                                            <div className='max-w-full'>
-                                                <div className='max-w-full flex justify-between items-end flex-row'>
-                                                    <label className='text-base font-bold text-[#191919] text-left m-0 p-0 block'>Email</label>
-                                                </div>
-                                                <div className='flex min-h-10 mt-2'>
-                                                    <div className='text-base font-medium text-[#191919] flex items-center w-full rounded-lg z-[1] px-3 py-0 bg-[#F7F7F7]'>
-                                                        <div className='flex-grow bg-inherit max-w-full my-auto'>
-                                                            <input 
-                                                                type="email"
-                                                                value={email}
-                                                                onChange={handleEmailChange}
-                                                                required
-                                                                autoComplete="given-name" 
-                                                                className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className='max-w-full mb-4'>
-                                        <div className='w-full'>
-                                            <div className='max-w-full'>
-                                                <div className='max-w-full flex justify-between items-end flex-row'>
-                                                    <label className='text-base font-bold text-[#191919] text-left m-0 p-0 block'>Password</label>
-                                                </div>
-                                                <div className='flex min-h-10 mt-2'>
-                                                    <div className='text-base font-medium text-[#191919] flex items-center w-full rounded-lg z-[1] px-3 py-0 bg-[#F7F7F7]'>
-                                                        <div className='flex-grow bg-inherit max-w-full my-auto'>
-                                                            <input 
-                                                                type="password" 
-                                                                value={password}
-                                                                onChange={handlePasswordChange}
-                                                                required
-                                                                autoComplete="given-name" 
-                                                                className='text-base font-medium w-full outline-none flex bg-inherit appearance-none' />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    ))}
+                                    
                                     <div className='max-w-full mb-4'>
                                         {respStatus !== null && (
                                         <div className='w-full'>

@@ -23,7 +23,7 @@ function RestaurantView() {
     useEffect(() => {
         const fetchRestaurantData = async () => {
             try {
-                const response = await axios.get(`${BACKEND_URL}/restaurant/${id}`);
+                const response = await axios.get(`${BACKEND_URL}/restaurants/${id}`);
                 setRestaurantData(response.data);
             } catch (error) {
                 setError('Something went wrong');

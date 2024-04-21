@@ -43,7 +43,7 @@ function App() { //FFA500
         localStorage.setItem('zipcode', zip);
         navigate(0);
       }
-      const response = await axios.get(`${BACKEND_URL}/restaurants/by-zipcode/${zipcode}`);
+      const response = await axios.get(`${BACKEND_URL}/restaurants/by_zipcode/${zipcode}`);
       setRestaurantData(response.data)
       setActiveFilter(false);
     } catch (error) {
