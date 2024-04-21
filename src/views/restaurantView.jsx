@@ -79,7 +79,7 @@ function RestaurantView() {
       },
   ];
 
-    return (
+  return (
         <div className="app">
             <div className="header">
                 <HeaderLogo />
