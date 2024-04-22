@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import '../styling/DeveloperBanViewStyle.css';
+import '../styling/DeveloperBanViewStyle.css';
 
 function DeveloperBanView() {
     // forms
