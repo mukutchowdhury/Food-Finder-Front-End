@@ -7,13 +7,31 @@ function MenuView() {
   const { id } = useParams();
   const [menuItems, setMenuItems] = useState([]);
   const [error, setError] = useState('');
-  const [searchTerm, setSearchTerm] = useState(''); 
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const groupByCategory = (items) => {
+    return items.reduce((acc, item) => {
+      if (!acc[item.category]) {
+        acc[item.category] = [];
+      }
+      acc[item.category].push(item);
+      return acc;
+    }, {});
+  };
+  
+  const sortItemsInGroups = (groupedItems) => {
+    Object.keys(groupedItems).forEach(category => {
+      groupedItems[category].sort((a, b) => a.name.localeCompare(b.name));
+    });
+    return groupedItems;
+  };  
 
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
         const response = await axios.get(`${BACKEND_URL}/menu/${id}`);
-        setMenuItems(response.data);
+        const groupedAndSorted = sortItemsInGroups(groupByCategory(response.data));
+        setMenuItems(groupedAndSorted);
       } catch (error) {
         setError('Error fetching menu items');
       }
@@ -22,9 +40,17 @@ function MenuView() {
     fetchMenuItems();
   }, [id]);
 
-  const filteredItems = menuItems.filter(item =>
-    item.item_name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filterItemsBySearchTerm = () => {
+    const filtered = {};
+    Object.keys(menuItems).forEach(category => {
+      filtered[category] = menuItems[category].filter(item =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    });
+    return filtered;
+  };
+
+  const filteredMenuItems = searchTerm ? filterItemsBySearchTerm() : menuItems;
 
   return (
     <div className="menu-container">
@@ -38,11 +64,15 @@ function MenuView() {
         className="search-input"
       />
       <div className="menu-items">
-        {filteredItems.map(item => (
-          <div key={item._id} className="menu-item">
-            <h3>{item.item_name}</h3>
-            <p>${item.item_price.toFixed(2)}</p>
-            <p>Category: {item.item_category}</p>
+        {Object.keys(filteredMenuItems).map((category) => (
+          <div key={category}>
+            <h2>{category}</h2>
+            {filteredMenuItems[category].map(item => (
+              <div key={item._id} className="menu-item">
+                <h3>{item.name}</h3>
+                <p>${item.price.toFixed(2)}</p>
+              </div>
+            ))}
           </div>
         ))}
       </div>
