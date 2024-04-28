@@ -46,7 +46,7 @@ function ManageCategory() {
             setName('');
             setDescription('');
             
-            if (response.status === 200) {
+            if (response.status === 201) {
                 // setSubmitStatus('Good');
                 navigate(0);
             }
