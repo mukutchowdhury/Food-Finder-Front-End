@@ -1,21 +1,36 @@
 .menu-container {
   padding: 20px;
-  background-color: orange;
+  background-color: #f4f4f4;
 }
 
 .menu-title {
-  color: white;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px; 
+  box-sizing: border-box;
 }
 
 .menu-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .menu-item {
-  border: 1px solid #ccc;
+  background-color: #fff;
   padding: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   border-radius: 5px;
-  background-color: white;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
 }

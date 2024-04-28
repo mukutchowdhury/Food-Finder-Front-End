@@ -95,6 +95,43 @@
     width: 100%; 
 }
 
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-shadow: none;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+.form-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.form-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.form-submit:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.success-message {
+    color: green;
+    margin-top: 10px;
+}
 
 .review-container {
     display: flex;
@@ -152,3 +189,4 @@
 .deals-description {
     font-size: 1rem;
 }
+
