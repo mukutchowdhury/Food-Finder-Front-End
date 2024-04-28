@@ -32,17 +32,17 @@ function RestaurantView() {
         fetchRestaurantData();
     }, [id]);
 
-    useEffect(() => {
-      const fetchHoursData = async () => {
-          try {
-              const response = await axios.get(`${BACKEND_URL}/hour/${id}`);
-              setHoursData(response.data);
-          } catch (error) {
-              setError('Error fetching hours data');
-          }
-      };
-      fetchHoursData();
-  }, [id]);
+//     useEffect(() => {
+//       const fetchHoursData = async () => {
+//           try {
+//               const response = await axios.get(`${BACKEND_URL}/hour/${id}`);
+//               setHoursData(response.data);
+//           } catch (error) {
+//               setError('Error fetching hours data');
+//           }
+//       };
+//       fetchHoursData();
+//   }, [id]);
 
     useEffect(() => {
         const fetchReviewsData = async () => {
@@ -98,7 +98,7 @@ function RestaurantView() {
                             rating={calculateAverageRating()}
                             address={restaurantData.address}
                             phone={restaurantData.phone}
-                            hours={hoursData ? `${hoursData.open_time} - ${hoursData.close_time}` : ''}
+                            hours={restaurantData.hours.open + ' : ' + restaurantData.hours.close}
                         />
                         <RestaurantImage imageUrl={restaurantData.image} altText="Restaurant Image" />
                     </>
@@ -106,7 +106,6 @@ function RestaurantView() {
             </div>
             <div className="button-container">
                 <Button to={`/menu/${id}`} text="View Menu" />
-                <Button to="/reservation" text="Reserve a Table" />
             </div>
             
             <div className="container-wrapper">
