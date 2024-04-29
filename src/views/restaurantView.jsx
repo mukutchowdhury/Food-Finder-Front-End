@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "../Components/Button";
 import Deals from "../Components/Deal";
-import HeaderLogo from "../Components/HeaderLogo/HeaderLogo";
 import Navigation from "../Components/Navigation";
-import ProfileIcon from "../Components/ProfileIcon";
 import RestaurantImage from "../Components/RestaurantImage";
 import RestaurantInfo from "../Components/RestaurantInfo";
 import RestaurantReview from "../Components/RestaurantReview.jsx";
@@ -19,7 +17,7 @@ function RestaurantView() {
     const [hoursData, setHoursData] = useState(null);
     const [reviewsData, setReviewsData] = useState([]);
 
-    
+  
     useEffect(() => {
         const fetchRestaurantData = async () => {
             try {
@@ -31,18 +29,6 @@ function RestaurantView() {
         };
         fetchRestaurantData();
     }, [id]);
-
-//     useEffect(() => {
-//       const fetchHoursData = async () => {
-//           try {
-//               const response = await axios.get(`${BACKEND_URL}/hour/${id}`);
-//               setHoursData(response.data);
-//           } catch (error) {
-//               setError('Error fetching hours data');
-//           }
-//       };
-//       fetchHoursData();
-//   }, [id]);
 
     useEffect(() => {
         const fetchReviewsData = async () => {
@@ -82,7 +68,6 @@ function RestaurantView() {
   return (
         <div className="app">
             <div className="header">
-                <HeaderLogo />
                 <Navigation />
             </div>
             <div className="restaurant-content">

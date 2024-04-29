@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navigation from "../Components/Navigation";
 import { useParams } from 'react-router-dom';
 import { BACKEND_URL } from "../constants.js";
+
 
 function MenuView() {
   const { id } = useParams();
@@ -53,31 +55,39 @@ function MenuView() {
   const filteredMenuItems = searchTerm ? filterItemsBySearchTerm() : menuItems;
 
   return (
-    <div className="menu-container">
-      <h1 className="menu-title">Menu</h1>
-      {error && <p className="error-message">{error}</p>}
-      <input
-        type="text"
-        placeholder="Search for menu items..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="search-input"
-      />
-      <div className="menu-items">
-        {Object.keys(filteredMenuItems).map((category) => (
-          <div key={category}>
-            <h2>{category}</h2>
-            {filteredMenuItems[category].map(item => (
-              <div key={item._id} className="menu-item">
-                <h3>{item.name}</h3>
-                <p>${item.price.toFixed(2)}</p>
-              </div>
-            ))}
-          </div>
-        ))}
+    <div className="app">
+      <div className="header">
+      <Navigation />
       </div>
-    </div>
-  );
+        <div className="menu-container">
+          <h1 className="menu-title">Menu</h1>
+          {error && <p className="error-message">{error}</p>}
+          <input
+            type="text"
+            placeholder="Search for menu items..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+          <div className="menu-items">
+            {Object.keys(filteredMenuItems).map((category) => (
+              <div key={category}>
+                <h2>{category}</h2>
+                <div className="category-container">
+                  {filteredMenuItems[category].map(item => (
+                    <div key={item._id} className="menu-item">
+                      <img src={item.image} alt={item.name} className="menu-item-image" />
+                      <h3>{item.name}</h3>
+                      <p>${item.price.toFixed(2)}</p>
+                    </div>
+                  ))}
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </div>
+    );
 }
 
 export default MenuView;
