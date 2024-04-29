@@ -27,41 +27,23 @@ const VendorForm = () => {
                 const response = await axios.get(`${BACKEND_URL}/restaurants/all`);
                 //setFormData(response.data);
                 //setShowForm(true);
+                setFormData(response.data); // Set all restaurant data
+                setShowForm(true); //show form after fetching the data
             } catch (error) {
                 console.error('Error fetching restaurant data:', error);
             }
         };
         fetchRestaurantData();
-    }, [editingRestaurant]);
+    }, []);
 
-    const handleEditClick = (restaurant) => {
-        setEditingRestaurant(restaurant);
+    const handleEditClick = (restaurantName) => {
+        // Logic for handling edit click
+        console.log(`Editing restaurant: ${restaurantName}`);
     };
 
-    const handleInputChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            if (editingRestaurant) {
-                await axios.put(`/api/restaurants/${editingRestaurant}`, formData);
-                console.log('Restaurant updated');
-            } else {
-                await axios.post(`/api/restaurants`, formData);
-                console.log('New restaurant created');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-
-    const handleCreateRestaurant = async () => {
-        setShowForm(true);
+    const handleCreateRestaurant = () => {
+        // Logic for handling create restaurant click
+        console.log('Creating new restaurant');
     };
 
     return (
@@ -83,10 +65,13 @@ const VendorForm = () => {
                 <h2>Active Restaurants</h2>
                 <div className="centered-restaurant-boxes">
                     <div className="restaurant-row">
-                        {/* Restaurant Cards */}
-                        {/* {[...Array(6)].map((_, index) => (
-                            //<MyRestaurantCard/>
-                        ))} */}
+                        {formData.map((restaurant, index) => (
+                            <MyRestaurantCard
+                                key={index}
+                                restaurant={restaurant}
+                                handleEditClick={handleEditClick}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>
