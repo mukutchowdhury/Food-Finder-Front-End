@@ -112,13 +112,15 @@
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #14e15c;
+    color: #1cbd3c;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    visibility: visible;
 }
+
 .form-submit:hover {
     background-color: #0056b3;
 }
