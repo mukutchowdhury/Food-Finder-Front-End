@@ -1,25 +1,17 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import MyRestaurantCard from '../Components/MyRestaurantCard.jsx';
 import { BACKEND_URL } from "../constants.js";
 import '../styling/VendorForm.css';
 
 const VendorForm = () => {
     const [showForm, setShowForm] = useState(false);
     const [editingRestaurant, setEditingRestaurant] = useState(null);
-    const [formData, setFormData] = useState({
-        name: '',
-        address: '',
-        zipcode: '',
-        owner_id: '',
-        image: '',
-        phone: '',
-        cuisine: '',
-        keywords: '',
-        category: '',
-        hours: ''
-    });
+    const [formData, setFormData] = useState([]);
 
     const userId = localStorage.getItem("userid");
+
+    // if condition compare onwer id with user id and if equal -> render
     console.log(userId);
     useEffect(() => {
         const fetchRestaurantData = async () => {
@@ -46,6 +38,11 @@ const VendorForm = () => {
         console.log('Creating new restaurant');
     };
 
+    const arrayifyRestaurantsObject = () => {
+        return Object.keys(formData);
+    }
+
+
     return (
         <div className="vendor-container">
             {/* Sidebar */}
@@ -65,13 +62,11 @@ const VendorForm = () => {
                 <h2>Active Restaurants</h2>
                 <div className="centered-restaurant-boxes">
                     <div className="restaurant-row">
-                        {formData.map((restaurant, index) => (
-                            <MyRestaurantCard
-                                key={index}
-                                restaurant={restaurant}
-                                handleEditClick={handleEditClick}
-                            />
-                        ))}
+                    {arrayifyRestaurantsObject().map((item, index) => (
+                        <MyRestaurantCard
+                        key={index}
+                        restaurant={formData[item]}
+                    />))}
                     </div>
                 </div>
             </div>
