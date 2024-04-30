@@ -12,10 +12,12 @@ import { useParams } from 'react-router-dom';
 
 function RestaurantView() {
     const { id } = useParams();
+    const userid = localStorage.getItem('userid');
     const [error, setError] = useState('');
     const [restaurantData, setRestaurantData] = useState(null);
     const [hoursData, setHoursData] = useState(null);
     const [reviewsData, setReviewsData] = useState([]);
+    const [review_id, setReview_id] = useState('');
 
   
     useEffect(() => {
@@ -41,6 +43,26 @@ function RestaurantView() {
         };
         fetchReviewsData();
     }, [id]);
+
+    const handleDeleteReview = async () => {
+    try {
+        // need to implement a get method for review based on review_id to support user only delete
+        // const response = await axios.get(`${BACKEND_URL}/review/${review_id}`);
+        // const reviewUserId = response.data.user_id;
+        // const currUserID = localStorage.getItem('userid');
+        // if (reviewUserId !== currUserID) {
+        //     console.error('Not this user review');
+        //     return;
+        // }
+        await axios.delete(`${BACKEND_URL}/review/${review_id}`);
+        const response = await axios.get(`${BACKEND_URL}/review/${id}`);
+        setReviewsData(response.data.review); 
+        setReview_id('');
+    } catch (error) {
+        setError('Could not delete the review');
+    }
+}
+
 
     const calculateAverageRating = () => {
         if (reviewsData && reviewsData.length > 0) {
@@ -109,6 +131,15 @@ function RestaurantView() {
                             description={deal.description}
                         />
                     ))}
+                    <div className="delete-review-container">
+                    <input 
+                        type="text"
+                        placeholder="Enter review ID to delete"
+                        value={review_id}
+                        onChange={e => setReview_id(e.target.value)}
+                    />
+                    <button onClick={handleDeleteReview}>Delete Review</button>
+                </div>
                 </div>
             </div>
         </div>
