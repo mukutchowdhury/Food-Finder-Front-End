@@ -13,6 +13,7 @@ const VendorForm = () => {
     const userId = localStorage.getItem("userid");
 
     // if condition compare onwer id with user id and if equal -> render
+
     console.log(userId);
     useEffect(() => {
         const fetchRestaurantData = async () => {
@@ -89,11 +90,17 @@ const VendorForm = () => {
                 <h2>Active Restaurants</h2>
                 <div className="centered-restaurant-boxes">
                     <div className="restaurant-row">
-                    {arrayifyRestaurantsObject().map((item, index) => (
-                        <MyRestaurantCard
-                        key={index}
-                        restaurant={formData[item]}
-                    />))}
+                    {arrayifyRestaurantsObject().map((item, index) => {
+                        if (userId === formData[item].owner_id) {
+                            return (
+                                <MyRestaurantCard
+                                    key={index}
+                                    restaurant={formData[item]}
+                                />
+                            );
+                        }
+                        return null; // or any other desired behavior if userId doesn't match
+                    })}
                     </div>
                 </div>
             </div>
