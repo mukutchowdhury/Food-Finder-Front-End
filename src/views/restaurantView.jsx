@@ -15,7 +15,6 @@ function RestaurantView() {
     const userid = localStorage.getItem('userid');
     const [error, setError] = useState('');
     const [restaurantData, setRestaurantData] = useState(null);
-    const [hoursData, setHoursData] = useState(null);
     const [reviewsData, setReviewsData] = useState([]);
     const [review_id, setReview_id] = useState('');
 

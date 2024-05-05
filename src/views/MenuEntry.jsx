@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../styling/MenuForm.css';
+import '../styling/MenuEntry.css';
 
 
 function MenuForm() {

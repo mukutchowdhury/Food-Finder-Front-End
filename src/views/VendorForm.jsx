@@ -3,19 +3,18 @@ import { useEffect, useState } from 'react';
 import MyRestaurantCard from '../Components/MyRestaurantCard.jsx';
 import { BACKEND_URL } from "../constants.js";
 import '../styling/VendorForm.css';
-'../views/RestaurantEntry.jsx';
+import RestaurantEntry from './RestaurantEntry.jsx';
+import MenuEntry from './MenuEntry.jsx';
 
 const VendorForm = () => {
     const [showForm, setShowForm] = useState(false);
     const [editingRestaurant, setEditingRestaurant] = useState(null);
     const [formData, setFormData] = useState([]);
     const [restaurant_id, setRestaurantId] = useState('');
+    const [userId, setUserId] = useState(localStorage.getItem("userid"));
+    const [formVisible, setFormVisible] = useState(false);
 
-    const userId = localStorage.getItem("userid");
 
-    // if condition compare onwer id with user id and if equal -> render
-
-    console.log(userId);
     useEffect(() => {
         const fetchRestaurantData = async () => {
             try {
@@ -36,10 +35,14 @@ const VendorForm = () => {
         console.log(`Editing restaurant: ${restaurantName}`);
     };
 
-    const handleCreateRestaurant = () => {
-        // Logic for handling create restaurant click
-        console.log('Creating new restaurant');
-    };
+    const handleCreateRestaurant = async (restaurantData) => {
+        try {
+          await axios.post(`${BACKEND_URL}/restaurants/register`, restaurantData);
+          console.log('Restaurant created successfully:', restaurantData);
+        } catch (error) {
+          console.error('Error creating restaurant:', error);
+        }
+      };
 
     const handleDeleteRestaurant = async () => {
         try {
@@ -65,10 +68,12 @@ const VendorForm = () => {
                 <div className="sidebar-header">
                     <h3>Options</h3>
                 </div>
-                <div className="options-boxes">
-                    <div className="options-box" onClick={handleCreateRestaurant}>
-                        <h4>Create Restaurant</h4>
-                    </div>
+                <div className="options-box" onClick={() => setFormVisible(true)}>
+                    <h4>Create Restaurant</h4>
+                </div>
+                {formVisible && (
+                    <RestaurantEntry userId={userId} onCreateRestaurant={handleCreateRestaurant} />
+                )}
                 </div>
                 <div className="options-boxes">
                     <div className="options-box" onClick={handleDeleteRestaurant}>
@@ -82,7 +87,6 @@ const VendorForm = () => {
                         onChange={e => setRestaurantId(e.target.value)}
                     />
                     <button onClick={handleDeleteRestaurant}>Confirm</button>
-                </div>
                 </div>
             </div>
 
@@ -100,7 +104,7 @@ const VendorForm = () => {
                                 />
                             );
                         }
-                        return null; // or any other desired behavior if userId doesn't match
+                        return null; 
                     })}
                     </div>
                 </div>

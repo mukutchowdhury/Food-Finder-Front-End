@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import '../styling/RestaurantEntry.css';
 
-function RestaurantEntry() {
+function RestaurantEntry({ userId, onCreateRestaurant }) {
   const [formData, setFormData] = useState({
     name: '',
     address: '',
     zipcode: '',
-    owner_id: 0,
+    owner_id: userId,
     image: '',
     phone: '',
     cuisine: '',
@@ -28,7 +28,7 @@ function RestaurantEntry() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    onCreateRestaurant(formData);
   };
 
   return (
@@ -43,9 +43,6 @@ function RestaurantEntry() {
 
         <label htmlFor="zipcode">Zipcode:</label><br />
         <input type="text" id="zipcode" name="zipcode" value={formData.zipcode} onChange={handleChange} /><br /><br />
-
-        <label htmlFor="owner_id">Owner ID:</label><br />
-        <input type="number" id="owner_id" name="owner_id" value={formData.owner_id} onChange={handleChange} /><br /><br />
 
         <label htmlFor="image">Image URL:</label><br />
         <input type="text" id="image" name="image" value={formData.image} onChange={handleChange} /><br /><br />
