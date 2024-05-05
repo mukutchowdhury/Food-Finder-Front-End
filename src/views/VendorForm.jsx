@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import MyRestaurantCard from '../Components/MyRestaurantCard.jsx';
 import { BACKEND_URL } from "../constants.js";
 import '../styling/VendorForm.css';
+'../views/RestaurantEntry.jsx';
 
 const VendorForm = () => {
     const [showForm, setShowForm] = useState(false);
