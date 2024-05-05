@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navigation from "../Components/Navigation";
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Navigation from "../Components/Navigation";
 import { BACKEND_URL } from "../constants.js";
-
+import '../styling/menuStyle.css';
 
 function MenuView() {
   const { id } = useParams();
@@ -57,37 +57,43 @@ function MenuView() {
   return (
     <div className="app">
       <div className="header">
-      <Navigation />
+        <Navigation />
       </div>
-        <div className="menu-container">
-          <h1 className="menu-title">Menu</h1>
-          {error && <p className="error-message">{error}</p>}
-          <input
-            type="text"
-            placeholder="Search for menu items..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
-          <div className="menu-items">
-            {Object.keys(filteredMenuItems).map((category) => (
-              <div key={category}>
-                <h2>{category}</h2>
-                <div className="category-container">
-                  {filteredMenuItems[category].map(item => (
-                    <div key={item._id} className="menu-item">
+      <div className="menu-container">
+        <h1 className="menu-title">Menu</h1>
+        {error && <p className="error-message">{error}</p>}
+        <input
+          type="text"
+          placeholder="Search for menu items..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <div className="menu-items">
+          {Object.keys(filteredMenuItems).map((category) => (
+            <div key={category}>
+              <h2>{category}</h2>
+              <div className="category-container">
+                {filteredMenuItems[category].map(item => (
+                  <div key={item._id} className="menu-item">
+                    <div className="menu-item-image-container">
                       <img src={item.image} alt={item.name} className="menu-item-image" />
-                      <h3>{item.name}</h3>
-                      <p>${item.price.toFixed(2)}</p>
                     </div>
-                  ))}
+                    <div className="item-details">
+                      <p><strong>Name:</strong> {item.name}</p>
+                      <p><strong>Description:</strong> {item.description}</p>
+                      <p><strong>Price:</strong> ${item.price.toFixed(2)}</p>
+                      <p><strong>Category:</strong> {item.category}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
-          </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    );
+    </div>
+  );
 }
 
 export default MenuView;
