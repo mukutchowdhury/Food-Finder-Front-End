@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import './styling/RestaurantEntryStyle';
+import '../styling/RestaurantEntry.css';
 
-
-function RestaurantForm() {
+function RestaurantEntry() {
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -87,4 +86,4 @@ function RestaurantForm() {
   );
 }
 
-export default RestaurantForm;
+export default RestaurantEntry;

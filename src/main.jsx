@@ -8,7 +8,7 @@ import CategoryAll from './views/categoryAll.jsx';
 import Settings from './views/developer-settings.jsx';
 import HomeView from './views/home';
 import MenuView from './views/menuView.jsx';
-// import RestaurantView from './views/restaurantView.jsx';
+import RestaurantView from './views/restaurantView.jsx';
 
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import './index.css';
@@ -26,7 +26,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path='access-denied' element={<AccessDenied/>}/>
       <Route path='/vendor/:id' element = {<VendorForm/>}/>
       <Route path='/menu/:id' element={<MenuView/>}/>
-      {/* <Route path='/RestaurantEntry' element={<RestaurantEntry/>}/> */}
+      {/* <Route path='/RestaurantForm' element={<RestaurantEntry/>}/> */}
   </Route>
 ));
 
