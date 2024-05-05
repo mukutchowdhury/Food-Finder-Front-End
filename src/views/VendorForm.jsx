@@ -44,16 +44,14 @@ const VendorForm = () => {
         }
       };
 
-    const handleDeleteRestaurant = async () => {
+      const handleDeleteRestaurant = async () => {
         try {
             await axios.delete(`${BACKEND_URL}/restaurants/${restaurant_id}`);
-            const response = await axios.get(`${BACKEND_URL}/restaurant/${restaurant_id}`);
-            setFormData(response.data.review); 
+            setFormData(prevData => prevData.filter(restaurant => restaurant.id !== restaurant_id));
             setRestaurantId('');
         } catch (error) {
-            setError('Could not delete the restaurant');
+            console.error('Could not delete the restaurant:', error);
         }
-        console.log('Deleting an existing restaurant');
     };
 
     const arrayifyRestaurantsObject = () => {
@@ -74,7 +72,6 @@ const VendorForm = () => {
                 {formVisible && (
                     <RestaurantEntry userId={userId} onCreateRestaurant={handleCreateRestaurant} />
                 )}
-                </div>
                 <div className="options-boxes">
                     <div className="options-box" onClick={handleDeleteRestaurant}>
                         <h4>Delete Restaurant</h4>
@@ -87,9 +84,9 @@ const VendorForm = () => {
                         onChange={e => setRestaurantId(e.target.value)}
                     />
                     <button onClick={handleDeleteRestaurant}>Confirm</button>
+                    </div>
                 </div>
             </div>
-
             {/* Main Content */}
             <div className="main-content">
                 <h2>Active Restaurants</h2>

@@ -18,6 +18,8 @@ function RestaurantEntry({ userId, onCreateRestaurant }) {
     }
   });
 
+  const [message, setMessage] = useState('');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -26,9 +28,19 @@ function RestaurantEntry({ userId, onCreateRestaurant }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onCreateRestaurant(formData);
+    if (Object.values(formData).some(value => value === '')) {
+      setMessage('Please fill out all fields');
+      return;
+    }
+    try {
+      await onCreateRestaurant(formData);
+      setMessage('Restaurant created successfully');
+    } catch (error) {
+      setMessage('Error creating restaurant');
+      console.error('Error creating restaurant:', error);
+    }
   };
 
   return (
@@ -77,8 +89,9 @@ function RestaurantEntry({ userId, onCreateRestaurant }) {
           }
         }))} /><br /><br />
 
-        <input type="submit" value="Submit" />
-      </form>
+          <button type="submit">Submit</button>
+        </form>
+        {message && <p>{message}</p>}
     </div>
   );
 }
