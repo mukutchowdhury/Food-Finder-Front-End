@@ -81,7 +81,6 @@ const VendorForm = () => {
             <div className="main-content">
                 {message && <p>{message}</p>}
                 <div className="centered-restaurant-boxes">
-<<<<<<< HEAD
                     <div className="restaurant-row flex flex-col gap-5">
                     {arrayifyRestaurantsObject().map((item, index) => {
                         if (userId === formData[item].owner_id) {
@@ -92,19 +91,6 @@ const VendorForm = () => {
                                 />
                             );
                         }
-=======
-                    <div className="restaurant-row">
-                    <h2>Active Restaurants</h2>
-                        {arrayifyRestaurantsObject().map((item, index) => {
-                            if (userId === formData[item].owner_id) {
-                                return (
-                                    <MyRestaurantCard
-                                        key={index}
-                                        restaurant={formData[item]}
-                                    />
-                                );
-                            }
->>>>>>> d7e923dc83875dbb04add3a653221acaa973ae01
                         return null; 
                     })}
                     </div>
