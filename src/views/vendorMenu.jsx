@@ -19,6 +19,7 @@ const VendorMenu = () => {
         const fetchMenuItems = async () => {
             try {
                 const response = await axios.get(`${BACKEND_URL}menu/${restaurantId}`);
+                console.log(response.data);
                 setMenuItems(response.data);
             } catch (error) {
                 console.error('Error fetching menu items:', error);
@@ -31,7 +32,7 @@ const VendorMenu = () => {
 
     const handleAddMenuItem = async (menuData) => {
         try {
-            const response = await axios.post(`${BACKEND_URL}/menu/${restaurantId}`, menuData);
+            const response = await axios.post(`${BACKEND_URL}menu/${restaurantId}`, menuData);
             setMenuItems(prevItems => [...prevItems, response.data]); 
             setMessage('Menu item added successfully');
         } catch (error) {
@@ -42,7 +43,7 @@ const VendorMenu = () => {
 
     const handleDeleteMenuItem = async (menuItemId) => {
         try {
-            await axios.delete(`${BACKEND_URL}/menu/${menuItemId}`);
+            await axios.delete(`${BACKEND_URL}menu/${menuItemId}`);
             setMenuItems(prevItems => prevItems.filter(item => item.id !== menuItemId));
             setMessage('Menu item deleted successfully');
         } catch (error) {
@@ -60,7 +61,7 @@ const VendorMenu = () => {
                     <h3>Options</h3>
                 </div>
                 {restaurantId && (
-                    <MenuEntry restaurantId={restaurantId} onSubmit={handleAddMenuItem} />
+                    <MenuEntry onCreateMenuItem={handleAddMenuItem} restaurantId={restaurantId} />
                 )}
                 <div className="delete-review-container">
                     <input 
@@ -69,16 +70,20 @@ const VendorMenu = () => {
                         value={menuItemToDelete}
                         onChange={e => setMenuItemToDelete(e.target.value)}
                     />
-                    <button onClick={handleDeleteMenuItem}>Delete Menu Item</button>
+                    <button onClick={() => handleDeleteMenuItem(menuItemToDelete)}>Delete</button>
                 </div>
             </div>
             {/* Main Content */}
             <div className="main-content">
                 {message && <p>{message}</p>}
                 <div className="menu-items-container">
-                    {menuItems.map((item) => (
+                {menuItems.length > 0 ? (
+                    menuItems.map((item) => (
                         <MenuItemCard key={item.id} menuItem={item} onDelete={handleDeleteMenuItem} />
-                    ))}
+                        ))
+                    ) : (
+                        <p>No menu items found.</p>
+                    )}
                 </div>
             </div>
         </div>

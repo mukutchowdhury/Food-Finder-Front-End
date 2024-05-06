@@ -27,6 +27,10 @@ function RestaurantCard(props) {
         }
     }
 
+    const handleNavigateToVendorMenu = () => {
+        navigate(`/vendor/${restaurant_id}`);
+    }
+
     return (
         <div className='mb-4'>
         <div className='overflow-hidden relative max-w-full box-border' style={{ scrollSnapAlign: 'start', flex: "0 0 346px" }} onClick={handleRoute}>
@@ -56,10 +60,15 @@ function RestaurantCard(props) {
                 </div>
             </div>
         </div>
-        <div className='overflow-hidden box-border mt-2'>
+        <div className='flex justify-start items-center mt-2'>
             <button onClick={handleDeleteRestaurant} className='w-full bg-white py-2 px-8'>
                 <span className='text-xl font-bold tracking-normal text-red-500 whitespace-nowrap overflow-hidden overflow-ellipsis box-border'>
                     Delete
+                </span>
+            </button>
+            <button onClick={handleNavigateToVendorMenu} className='bg-white py-2 px-8'>
+                <span className='text-xl font-bold tracking-normal text-blue-500 whitespace-nowrap overflow-hidden overflow-ellipsis box-border'>
+                    Restaurant Menu
                 </span>
             </button>
         </div>

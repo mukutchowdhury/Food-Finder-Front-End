@@ -7,7 +7,8 @@ function MenuForm({ onCreateMenuItem }) {
         name: '',
         description: '',
         price: '',
-        category: ''
+        category: '',
+        image: ''
     });
 
     const [message, setMessage] = useState('');
@@ -22,15 +23,15 @@ function MenuForm({ onCreateMenuItem }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!formData.name || !formData.description || !formData.price || !formData.category) {
+        if (!formData.name || !formData.description || !formData.price || !formData.category || !formData.image) {
             setMessage('All fields must be filled.');
             return;
         }
 
         try {
-            await onCreateMenuItem(formData); // Call the onCreateMenuItem function, passing the formData
+            await onCreateMenuItem(formData); 
             setMessage('Menu item created successfully!');
-            setFormData({ name: '', description: '', price: '', category: '' }); // Reset form after successful submission
+            setFormData({ name: '', description: '', price: '', category: '', image: '' }); 
         } catch (error) {
             console.error('Error creating menu item:', error);
             setMessage('Error creating menu item. Please try again.');
@@ -75,6 +76,16 @@ function MenuForm({ onCreateMenuItem }) {
                     type="text"
                     name="category"
                     value={formData.category}
+                    onChange={handleChange}
+                />
+            </label>
+            <br />
+            <label>
+                Image:
+                <input
+                    type="text"
+                    name="image"
+                    value={formData.image}
                     onChange={handleChange}
                 />
             </label>
