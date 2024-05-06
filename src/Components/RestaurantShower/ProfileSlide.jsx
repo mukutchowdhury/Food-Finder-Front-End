@@ -89,7 +89,7 @@ function ProfileSlide(props) {
                         </div>
                         </a>
                         )}
-                        <a href={`/vendor/${1}`}>
+                        <a href={`/vendor`}>
                         <div className='max-w-full rounded-md bg-white hover:bg-zinc-100 cursor-pointer'>
                             <div className='max-w-full flex items-center gap-4 p-2'>
                                 <div className='max-w-full flex items-center justify-center flex-row'>
