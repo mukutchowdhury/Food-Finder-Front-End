@@ -1,55 +1,55 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MyRestaurantCard from '../Components/MyRestaurantCard.jsx';
+import MenuItemCard from '../Components/MenuItemCard';
 import { BACKEND_URL } from "../constants.js";
 import '../styling/VendorForm.css';
-import RestaurantEntry from './RestaurantEntry.jsx';
 import MenuEntry from './MenuEntry.jsx';
+import { useParams } from 'react-router-dom';
 
 
 const VendorMenu = () => {
-    const [showForm, setShowForm] = useState(false);
-    const [editingRestaurant, setEditingRestaurant] = useState(null);
-    const [formData, setFormData] = useState([]);
-    const [restaurant_id, setRestaurantId] = useState('');
-    const [userId, setUserId] = useState(localStorage.getItem("userid"));
-    const [formVisible, setFormVisible] = useState(false);
+    const { restaurantId } = useParams();
     const [message, setMessage] = useState('');
+    const [menuItems, setMenuItems] = useState([]);
+    const [menuItemToDelete, setMenuItemToDelete] = useState('');
 
 
     useEffect(() => {
-        const fetchRestaurantData = async () => {
+        const fetchMenuItems = async () => {
             try {
-                const response = await axios.get(`${BACKEND_URL}/restaurants/all`);
-                //setFormData(response.data);
-                //setShowForm(true);
-                setFormData(response.data); // Set all restaurant data
-                setShowForm(true); //show form after fetching the data
+                const response = await axios.get(`${BACKEND_URL}menu/${restaurantId}`);
+                setMenuItems(response.data);
             } catch (error) {
-                console.error('Error fetching restaurant data:', error);
+                console.error('Error fetching menu items:', error);
+                setMessage('Failed to load menu items');
             }
         };
-        fetchRestaurantData();
-    }, []);
 
-    const handleEditClick = (restaurantName) => {
-        // Logic for handling edit click
-        console.log(`Editing restaurant: ${restaurantName}`);
-    };
+        fetchMenuItems();
+    }, [restaurantId]);
 
-    const handleAddMenuItem = async (menuData, id) => {
+    const handleAddMenuItem = async (menuData) => {
         try {
-            await axios.post(`${BACKEND_URL}/menu/${id}`, menuData);
+            const response = await axios.post(`${BACKEND_URL}/menu/${restaurantId}`, menuData);
+            setMenuItems(prevItems => [...prevItems, response.data]); 
             setMessage('Menu item added successfully');
         } catch (error) {
-            console.error('Error updating menu:', error);
+            console.error('Error adding menu item:', error);
             setMessage('Error adding menu item');
         }
     };
 
-    const arrayifyRestaurantsObject = () => {
-        return Object.keys(formData);
-    }
+    const handleDeleteMenuItem = async (menuItemId) => {
+        try {
+            await axios.delete(`${BACKEND_URL}/menu/${menuItemId}`);
+            setMenuItems(prevItems => prevItems.filter(item => item.id !== menuItemId));
+            setMessage('Menu item deleted successfully');
+        } catch (error) {
+            console.error('Error deleting menu item:', error);
+            setMessage('Error deleting menu item');
+        }
+    };
 
 
     return (
@@ -59,48 +59,26 @@ const VendorMenu = () => {
                 <div className="sidebar-header">
                     <h3>Options</h3>
                 </div>
-                <div className="options-box" onClick={() => setFormVisible(true)}>
-                    <h4>Add Menu Item</h4>
-                </div>
-                {formVisible && (
-                    <RestaurantEntry userId={userId} onCreateRestaurant={handleCreateRestaurant} />
+                {restaurantId && (
+                    <MenuEntry restaurantId={restaurantId} onSubmit={handleAddMenuItem} />
                 )}
-                <div className="options-boxes">
-                    <div className="options-box" onClick={handleDeleteRestaurant}>
-                        <h4>Delete Menu Item</h4>
-                    </div>
-                    <div className="delete-review-container">
+                <div className="delete-review-container">
                     <input 
                         type="text"
-                        placeholder="Enter Restaurant ID "
-                        value={restaurant_id}
-                        onChange={e => setRestaurantId(e.target.value)}
+                        placeholder="Enter Menu Item ID"
+                        value={menuItemToDelete}
+                        onChange={e => setMenuItemToDelete(e.target.value)}
                     />
-                    <button onClick={handleDeleteRestaurant}>Confirm</button>
-                    </div>
+                    <button onClick={handleDeleteMenuItem}>Delete Menu Item</button>
                 </div>
             </div>
             {/* Main Content */}
             <div className="main-content">
                 {message && <p>{message}</p>}
-                <div className="centered-restaurant-boxes">
-                    <div className="restaurant-row">
-                    <h2>Active Restaurants</h2>
-                        {arrayifyRestaurantsObject().map((item, index) => {
-                            if (userId === formData[item].owner_id) {
-                                return (
-                                    <div key={index}>
-                                        <MyRestaurantCard restaurant={formData[item]} />
-                                        <MenuEntry
-                                            restaurantId={formData[item].id}
-                                            onSubmit={handleEditMenu}
-                                        />
-                                    </div>
-                                );
-                            }
-                        return null; 
-                    })}
-                    </div>
+                <div className="menu-items-container">
+                    {menuItems.map((item) => (
+                        <MenuItemCard key={item.id} menuItem={item} onDelete={handleDeleteMenuItem} />
+                    ))}
                 </div>
             </div>
         </div>
