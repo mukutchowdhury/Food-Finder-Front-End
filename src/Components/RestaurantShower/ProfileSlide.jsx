@@ -18,6 +18,9 @@ function ProfileSlide(props) {
     const [pimage, setPimage] = useState('');
     const [privilege, setPrivilege] = useState(0);
 
+    const [switchName, setSwitchName] = useState('Switch to Vendor');
+    const [switchPath, setSwitchPath] = useState('/vendor');
+
     const { imageCallback } = props;
 
     const handleLogout = () => {
@@ -46,6 +49,12 @@ function ProfileSlide(props) {
             imageCallback(response.data.pimage);
         }
         fetchUserData();
+
+        if (location.pathname === '/vendor') {
+            setSwitchName('Switch to Viewer')
+            setSwitchPath('/')
+        }
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userid]);
 
@@ -89,7 +98,7 @@ function ProfileSlide(props) {
                         </div>
                         </a>
                         )}
-                        <a href={`/vendor`}>
+                        <a href={switchPath}>
                         <div className='max-w-full rounded-md bg-white hover:bg-zinc-100 cursor-pointer'>
                             <div className='max-w-full flex items-center gap-4 p-2'>
                                 <div className='max-w-full flex items-center justify-center flex-row'>
@@ -99,7 +108,7 @@ function ProfileSlide(props) {
                                 </div>
                                 <div className='max-w-full'>
                                     <span className='text-[.9375rem] leading-[1.3333] font-medium block text-black text-left overflow-hidden overflow-ellipsis whitespace-nowrap box-border select-none'>
-                                        Switch to vendor
+                                        {switchName}
                                     </span>
                                 </div>
                             </div>
