@@ -4,9 +4,12 @@ import MyRestaurantCard from '../Components/MyRestaurantCard.jsx';
 import { BACKEND_URL } from "../constants.js";
 import '../styling/VendorForm.css';
 import RestaurantEntry from './RestaurantEntry.jsx';
+<<<<<<< HEAD
 import MenuEntry from './MenuEntry.jsx';
 import SettingNav from '../Components/setting-nav.jsx';
 import { useNavigate } from 'react-router-dom';
+=======
+>>>>>>> d7e923dc83875dbb04add3a653221acaa973ae01
 
 const VendorForm = () => {
     const [showForm, setShowForm] = useState(false);
@@ -79,9 +82,9 @@ const VendorForm = () => {
             </div>
             {/* Main Content */}
             <div className="main-content">
-                <h2>Active Restaurants</h2>
                 {message && <p>{message}</p>}
                 <div className="centered-restaurant-boxes">
+<<<<<<< HEAD
                     <div className="restaurant-row flex flex-col gap-5">
                     {arrayifyRestaurantsObject().map((item, index) => {
                         if (userId === formData[item].owner_id) {
@@ -92,6 +95,19 @@ const VendorForm = () => {
                                 />
                             );
                         }
+=======
+                    <div className="restaurant-row">
+                    <h2>Active Restaurants</h2>
+                        {arrayifyRestaurantsObject().map((item, index) => {
+                            if (userId === formData[item].owner_id) {
+                                return (
+                                    <MyRestaurantCard
+                                        key={index}
+                                        restaurant={formData[item]}
+                                    />
+                                );
+                            }
+>>>>>>> d7e923dc83875dbb04add3a653221acaa973ae01
                         return null; 
                     })}
                     </div>
