@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styling/RestaurantEntry.css';
 
 function RestaurantEntry({ userId, onCreateRestaurant }) {
+
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -36,7 +37,6 @@ function RestaurantEntry({ userId, onCreateRestaurant }) {
     }
     try {
       await onCreateRestaurant(formData);
-      setMessage('Restaurant created successfully, refresh to see restaurant');
     } catch (error) {
       setMessage('Error creating restaurant');
       console.error('Error creating restaurant:', error);
@@ -89,7 +89,7 @@ function RestaurantEntry({ userId, onCreateRestaurant }) {
           }
         }))} /><br /><br />
 
-          <button type="submit">Submit</button>
+          <button className='bg-gray-200 py-2 px-4 min-w-full rounded-md' type="submit">Submit</button>
         </form>
         {message && <p>{message}</p>}
     </div>

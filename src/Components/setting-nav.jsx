@@ -68,7 +68,7 @@ function SettingNav() {
                                                         <div className='max-w-full flex items-stretch justify-start flex-row'>
                                                             <div className='max-w-full flex items-center justify-start flex-row'>
                                                                 <span className='max-w-full text-base font-bold transform-none text-left mt-1 p-0 block text-[#767676] overflow-hidden text-ellipsis flex-nowrap'>
-                                                                    DEVELOPER
+                                                                    
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -95,7 +95,10 @@ function SettingNav() {
                                         </div>
                                     ) : (
                                         <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-300 bg-transparent">
-                                            <div className="w-full h-full rounded-full flex items-center justify-center bg-gray-300 bg-cover bg-transparent bg-center bg-no-repeat" style={{backgroundImage: `url(${pimage})`}}>
+                                            {/* <div className="w-full h-full rounded-full flex items-center justify-center bg-gray-300 bg-cover bg-transparent bg-center bg-no-repeat" style={{backgroundImage: `url(${pimage})`}}>
+                                            </div> */}
+                                            <div className="w-[36px] h-[36px] rounded-full flex items-center justify-center bg-gray-300">
+                                                <FontAwesomeIcon icon={faUser} />
                                             </div>
                                         </div>
                                     )}

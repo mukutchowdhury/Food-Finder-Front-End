@@ -5,6 +5,8 @@ import { BACKEND_URL } from "../constants.js";
 import '../styling/VendorForm.css';
 import RestaurantEntry from './RestaurantEntry.jsx';
 import MenuEntry from './MenuEntry.jsx';
+import SettingNav from '../Components/setting-nav.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const VendorForm = () => {
     const [showForm, setShowForm] = useState(false);
@@ -14,6 +16,8 @@ const VendorForm = () => {
     const [userId, setUserId] = useState(localStorage.getItem("userid"));
     const [formVisible, setFormVisible] = useState(false);
     const [message, setMessage] = useState('');
+
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -40,19 +44,9 @@ const VendorForm = () => {
         try {
           await axios.post(`${BACKEND_URL}/restaurants/register`, restaurantData);
           console.log('Restaurant created successfully:', restaurantData);
+          navigate(0)
         } catch (error) {
           console.error('Error creating restaurant:', error);
-        }
-      };
-
-      const handleDeleteRestaurant = async () => {
-        try {
-            await axios.delete(`${BACKEND_URL}/restaurants/${restaurant_id}`);
-            // setFormData(prevData => prevData.filter(restaurant => restaurant.id !== restaurant_id));
-            setMessage('Restaurant deleted successfully, refresh to see update');
-            setRestaurantId('');
-        } catch (error) {
-            console.error('Could not delete the restaurant:', error);
         }
     };
 
@@ -60,41 +54,35 @@ const VendorForm = () => {
         return Object.keys(formData);
     }
 
+    const showFormRender = () => {
+        setFormVisible(!formVisible)
+    }
+
 
     return (
+        <>
+        <SettingNav />
         <div className="vendor-container">
             {/* Sidebar */}
             <div className="sidebar">
                 <div className="sidebar-header">
                     <h3>Options</h3>
                 </div>
-                <div className="options-box" onClick={() => setFormVisible(true)}>
-                    <h4>Create Restaurant</h4>
+                <div className="options-box" onClick={showFormRender}>
+                    <h4 className='select-none'>Create Restaurant</h4>
                 </div>
                 {formVisible && (
-                    <RestaurantEntry userId={userId} onCreateRestaurant={handleCreateRestaurant} />
+                    <div className='max-h-[21rem] overflow-y-scroll'>
+                        <RestaurantEntry userId={userId} onCreateRestaurant={handleCreateRestaurant} />
+                    </div>
                 )}
-                <div className="options-boxes">
-                    <div className="options-box" onClick={handleDeleteRestaurant}>
-                        <h4>Delete Restaurant</h4>
-                    </div>
-                    <div className="delete-review-container">
-                    <input 
-                        type="text"
-                        placeholder="Enter Restaurant ID "
-                        value={restaurant_id}
-                        onChange={e => setRestaurantId(e.target.value)}
-                    />
-                    <button onClick={handleDeleteRestaurant}>Confirm</button>
-                    </div>
-                </div>
             </div>
             {/* Main Content */}
             <div className="main-content">
                 <h2>Active Restaurants</h2>
                 {message && <p>{message}</p>}
                 <div className="centered-restaurant-boxes">
-                    <div className="restaurant-row">
+                    <div className="restaurant-row flex flex-col gap-5">
                     {arrayifyRestaurantsObject().map((item, index) => {
                         if (userId === formData[item].owner_id) {
                             return (
@@ -110,6 +98,7 @@ const VendorForm = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 
