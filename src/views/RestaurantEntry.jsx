@@ -36,7 +36,7 @@ function RestaurantEntry({ userId, onCreateRestaurant }) {
     }
     try {
       await onCreateRestaurant(formData);
-      setMessage('Restaurant created successfully');
+      setMessage('Restaurant created successfully, refresh to see restaurant');
     } catch (error) {
       setMessage('Error creating restaurant');
       console.error('Error creating restaurant:', error);

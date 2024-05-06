@@ -13,6 +13,7 @@ const VendorForm = () => {
     const [restaurant_id, setRestaurantId] = useState('');
     const [userId, setUserId] = useState(localStorage.getItem("userid"));
     const [formVisible, setFormVisible] = useState(false);
+    const [message, setMessage] = useState('');
 
 
     useEffect(() => {
@@ -47,7 +48,8 @@ const VendorForm = () => {
       const handleDeleteRestaurant = async () => {
         try {
             await axios.delete(`${BACKEND_URL}/restaurants/${restaurant_id}`);
-            setFormData(prevData => prevData.filter(restaurant => restaurant.id !== restaurant_id));
+            // setFormData(prevData => prevData.filter(restaurant => restaurant.id !== restaurant_id));
+            setMessage('Restaurant deleted successfully, refresh to see update');
             setRestaurantId('');
         } catch (error) {
             console.error('Could not delete the restaurant:', error);
@@ -90,6 +92,7 @@ const VendorForm = () => {
             {/* Main Content */}
             <div className="main-content">
                 <h2>Active Restaurants</h2>
+                {message && <p>{message}</p>}
                 <div className="centered-restaurant-boxes">
                     <div className="restaurant-row">
                     {arrayifyRestaurantsObject().map((item, index) => {
