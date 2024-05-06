@@ -4,12 +4,9 @@ import MyRestaurantCard from '../Components/MyRestaurantCard.jsx';
 import { BACKEND_URL } from "../constants.js";
 import '../styling/VendorForm.css';
 import RestaurantEntry from './RestaurantEntry.jsx';
-<<<<<<< HEAD
 import MenuEntry from './MenuEntry.jsx';
 import SettingNav from '../Components/setting-nav.jsx';
 import { useNavigate } from 'react-router-dom';
-=======
->>>>>>> d7e923dc83875dbb04add3a653221acaa973ae01
 
 const VendorForm = () => {
     const [showForm, setShowForm] = useState(false);
