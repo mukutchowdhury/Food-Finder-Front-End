@@ -94,7 +94,7 @@ const VendorForm = () => {
                     })} */}
                         <div className="restaurant-row">
                             {Object.values(formData).filter(restaurant => restaurant.owner_id === userId).map((restaurant, index) => (
-                                <MyRestaurantCard key={index} restaurant={restaurant} />
+                                <MyRestaurantCard key={index} restaurantInfo={restaurant} />
                             ))}
                         </div>
                     </div>
