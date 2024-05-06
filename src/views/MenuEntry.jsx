@@ -2,13 +2,15 @@ import { useState } from 'react';
 import '../styling/MenuEntry.css';
 
 
-function MenuForm() {
+function MenuForm({ onCreateMenuItem }) {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
-        price: 0,
+        price: '',
         category: ''
     });
+
+    const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -18,10 +20,23 @@ function MenuForm() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        if (!formData.name || !formData.description || !formData.price || !formData.category) {
+            setMessage('All fields must be filled.');
+            return;
+        }
+
+        try {
+            await onCreateMenuItem(formData); // Call the onCreateMenuItem function, passing the formData
+            setMessage('Menu item created successfully!');
+            setFormData({ name: '', description: '', price: '', category: '' }); // Reset form after successful submission
+        } catch (error) {
+            console.error('Error creating menu item:', error);
+            setMessage('Error creating menu item. Please try again.');
+        }
     };
+
     return (
         <form onSubmit={handleSubmit}>
             <label>
@@ -65,6 +80,7 @@ function MenuForm() {
             </label>
             <br />
             <button type="submit">Submit</button>
+            <div>{message}</div>
         </form>
     );
 

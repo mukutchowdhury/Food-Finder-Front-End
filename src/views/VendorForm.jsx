@@ -4,7 +4,6 @@ import MyRestaurantCard from '../Components/MyRestaurantCard.jsx';
 import { BACKEND_URL } from "../constants.js";
 import '../styling/VendorForm.css';
 import RestaurantEntry from './RestaurantEntry.jsx';
-import MenuEntry from './MenuEntry.jsx';
 
 const VendorForm = () => {
     const [showForm, setShowForm] = useState(false);
@@ -91,19 +90,19 @@ const VendorForm = () => {
             </div>
             {/* Main Content */}
             <div className="main-content">
-                <h2>Active Restaurants</h2>
                 {message && <p>{message}</p>}
                 <div className="centered-restaurant-boxes">
                     <div className="restaurant-row">
-                    {arrayifyRestaurantsObject().map((item, index) => {
-                        if (userId === formData[item].owner_id) {
-                            return (
-                                <MyRestaurantCard
-                                    key={index}
-                                    restaurant={formData[item]}
-                                />
-                            );
-                        }
+                    <h2>Active Restaurants</h2>
+                        {arrayifyRestaurantsObject().map((item, index) => {
+                            if (userId === formData[item].owner_id) {
+                                return (
+                                    <MyRestaurantCard
+                                        key={index}
+                                        restaurant={formData[item]}
+                                    />
+                                );
+                            }
                         return null; 
                     })}
                     </div>
