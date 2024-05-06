@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MyRestaurantCard from '../Components/MyRestaurantCard.jsx';
 import { BACKEND_URL } from "../constants.js";
 import '../styling/VendorForm.css';
@@ -19,10 +19,8 @@ const VendorForm = () => {
         const fetchRestaurantData = async () => {
             try {
                 const response = await axios.get(`${BACKEND_URL}/restaurants/all`);
-                //setFormData(response.data);
-                //setShowForm(true);
-                setFormData(response.data); // Set all restaurant data
-                setShowForm(true); //show form after fetching the data
+                setFormData(response.data);
+                setShowForm(true); 
             } catch (error) {
                 console.error('Error fetching restaurant data:', error);
             }
@@ -94,7 +92,7 @@ const VendorForm = () => {
                 <div className="centered-restaurant-boxes">
                     <div className="restaurant-row">
                     <h2>Active Restaurants</h2>
-                        {arrayifyRestaurantsObject().map((item, index) => {
+                        {/* {arrayifyRestaurantsObject().map((item, index) => {
                             if (userId === formData[item].owner_id) {
                                 return (
                                     <MyRestaurantCard
@@ -104,7 +102,12 @@ const VendorForm = () => {
                                 );
                             }
                         return null; 
-                    })}
+                    })} */}
+                        <div className="restaurant-row">
+                            {Object.values(formData).filter(restaurant => restaurant.owner_id === userId).map((restaurant, index) => (
+                                <MyRestaurantCard key={index} restaurant={restaurant} />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
