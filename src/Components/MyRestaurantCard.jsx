@@ -1,11 +1,22 @@
-import axios from 'axios';
-import { BACKEND_URL } from '../constants';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-const MyRestaurantCard = (props) => {
+import PropTypes from 'prop-types'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-    const { restaurant_id, name, address, zipcode, phone } = props.restaurant;
+import { BACKEND_URL } from '../constants';
+
+function RestaurantCard(props) {
+    const { restaurant_id, name, address, zipcode, image } = props.restaurantInfo;
+    const [totalStar, setTotalStar] = useState(4.5);
+    const [totalReviews, setTotalReviews] = useState(0);
     const navigate = useNavigate();
+
+    const handleRoute = () => {
+        navigate(`/restaurant/${restaurant_id}`);
+    }
 
     const handleDeleteRestaurant = async () => {
         try {
@@ -17,19 +28,47 @@ const MyRestaurantCard = (props) => {
     }
 
     return (
-        <>
-            <div className="shadow-black shadow-sm flex w-64 h-48 flex-col justify-center px-12 py-4 rounded-md">
-                <div>
-                    <p>{name}</p>
-                    <p>{address}, {zipcode}</p>
-                    <p>{phone}</p>
+        <div className='mb-4'>
+        <div className='overflow-hidden relative max-w-full box-border' style={{ scrollSnapAlign: 'start', flex: "0 0 346px" }} onClick={handleRoute}>
+            <div className='max-w-full box-border'>
+                <a className='absolute inset-0 decoration-inherit cursor-pointer box-border'></a>
+                <div className='max-w-full box-border'>
+                    <div className='relative box-border'>
+                        <a className='absolute inset-0 decoration-inherit cursor-pointer box-border'></a>
+                        <div className='h-44 w-full overflow-hidden bg-white opacity-100 rounded-md box-border'> 
+                            <img className='block w-full h-full object-cover box-border' src={image} style={{ objectPosition: '50% 50%' }}></img>
+                        </div>
+                    </div>
+                    <div className='relative mt-3 box-border'>
+                        <a className='decoration-inherit cursor-pointer box-border'>
+                            <div className='max-w-full box-border'>
+                                <div className='max-w-full flex items-center justify-start flex-row mt-[2px] box-border'>
+                                    <span className='text-xl font-bold tracking-normal text-black whitespace-nowrap overflow-hidden overflow-ellipsis box-border'>{name}</span>
+                                </div>
+                                <div className='overflow-hidden mt-[2px] box-border'>
+                                    <div className='max-w-full flex items-center justify-start flex-row box-border'>
+                                        <span className='text-sm font-medium block text-gray-500 text-left overflow-hidden overflow-ellipsis whitespace-nowrap box-border'>{address} {zipcode}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <button onClick={handleDeleteRestaurant} className='bg-gray-200 rounded-md px-4 py-2 mt-2 max-w-full'>
-                    Delete
-                </button>
             </div>
-        </>
+        </div>
+        <div className='overflow-hidden box-border mt-2'>
+            <button onClick={handleDeleteRestaurant} className='w-full bg-white py-2 px-8'>
+                <span className='text-xl font-bold tracking-normal text-red-500 whitespace-nowrap overflow-hidden overflow-ellipsis box-border'>
+                    Delete
+                </span>
+            </button>
+        </div>
+        </div>
     );
+}
+
+RestaurantCard.propTypes = {
+    restaurantInfo: PropTypes.object.isRequired,
 };
 
-export default MyRestaurantCard;
+export default RestaurantCard;

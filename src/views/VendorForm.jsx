@@ -87,7 +87,7 @@ const VendorForm = () => {
                             return (
                                 <MyRestaurantCard
                                     key={index}
-                                    restaurant={formData[item]}
+                                    restaurantInfo={formData[item]}
                                 />
                             );
                         }
