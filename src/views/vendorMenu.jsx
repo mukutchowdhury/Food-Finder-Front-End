@@ -6,13 +6,14 @@ import { BACKEND_URL } from "../constants.js";
 import '../styling/VendorForm.css';
 import MenuEntry from './MenuEntry.jsx';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const VendorMenu = () => {
     const { restaurantId } = useParams();
     const [message, setMessage] = useState('');
     const [menuItems, setMenuItems] = useState([]);
-    const [menuItemToDelete, setMenuItemToDelete] = useState('');
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -35,6 +36,7 @@ const VendorMenu = () => {
             const response = await axios.post(`${BACKEND_URL}menu/${restaurantId}`, menuData);
             setMenuItems(prevItems => [...prevItems, response.data]); 
             setMessage('Menu item added successfully');
+            navigate(0);
         } catch (error) {
             console.error('Error adding menu item:', error);
             setMessage('Error adding menu item');
@@ -46,6 +48,7 @@ const VendorMenu = () => {
             await axios.delete(`${BACKEND_URL}menu/${menuItemId}`);
             setMenuItems(prevItems => prevItems.filter(item => item.id !== menuItemId));
             setMessage('Menu item deleted successfully');
+            navigate(0);
         } catch (error) {
             console.error('Error deleting menu item:', error);
             setMessage('Error deleting menu item');
@@ -63,15 +66,6 @@ const VendorMenu = () => {
                 {restaurantId && (
                     <MenuEntry onCreateMenuItem={handleAddMenuItem} restaurantId={restaurantId} />
                 )}
-                <div className="delete-review-container">
-                    <input 
-                        type="text"
-                        placeholder="Enter Menu Item ID"
-                        value={menuItemToDelete}
-                        onChange={e => setMenuItemToDelete(e.target.value)}
-                    />
-                    <button onClick={() => handleDeleteMenuItem(menuItemToDelete)}>Delete</button>
-                </div>
             </div>
             {/* Main Content */}
             <div className="main-content">
