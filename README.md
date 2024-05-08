@@ -1,5 +1,7 @@
 # Food-Finder-Front-End
 This will be the frontend part of the Food Finder project! This repository contains code for the user interface and client-side logic of the Food Finder web application.
+
+# BackEnd & FrontEnd Connection
 For Mac Users:
     Run Backend first with these commands:
         sudo service mongod start
