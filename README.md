@@ -59,7 +59,7 @@ Food-Finder is a platform that will let users discover and explore local restaur
 - There is a Rating section. The Rating is able to go up till 5 and includes a comment.
 
 # Developer Page
-    - With a special developer account, the user has control over more of the site
-    - 2 special features can be accessed from the top right user drop down and entering the developer page for accounts with developer status
-    - One feature is managing categories where you can view active categories, delete them, or insert a new category with a name and description
-    - The second feature is searching and retrieving users for the purposes of user management
+- With a special developer account, the user has control over more of the site
+- 2 special features can be accessed from the top right user drop down and entering the developer page for accounts with developer status
+- One feature is managing categories where you can view active categories, delete them, or insert a new category with a name and description
+- The second feature is searching and retrieving users for the purposes of user management
