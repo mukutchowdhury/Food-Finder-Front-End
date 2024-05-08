@@ -31,6 +31,7 @@ Food-Finder is a platform that will let users discover and explore local restaur
 - The homepage of Food Finder will welcome users with a clean and modern design
 - Users will see the main navigation menu with options like "Enter Zipcode" and Sign in And Sing Up on the top right corner of the page
 - A Search bar for the user to look-up restaurants by zipcode even without an account
+- The users can view all restaurants with their name and image sorted by different categories as well as all restaurants in the system
 
 
 # Login Page
