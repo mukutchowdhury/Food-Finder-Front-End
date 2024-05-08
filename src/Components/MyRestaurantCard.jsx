@@ -10,8 +10,7 @@ import { BACKEND_URL } from '../constants';
 
 function RestaurantCard(props) {
     const { restaurant_id, name, address, zipcode, image } = props.restaurantInfo;
-    const [totalStar, setTotalStar] = useState(4.5);
-    const [totalReviews, setTotalReviews] = useState(0);
+
     const navigate = useNavigate();
 
     const handleRoute = () => {
