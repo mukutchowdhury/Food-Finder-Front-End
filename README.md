@@ -51,10 +51,12 @@ Food-Finder is a platform that will let users discover and explore local restaur
 - Ability to delete and add a Restaurant menu 
 
 # Restaurant View Page
-- Able to create a a menu item after putting in the following information: Name, Description, Price, Category, Image
+- Information about the restaurant like number, address, and hour is displayed along with the average rating
+- Able to create a menu item after putting in the following information: Name, Description, Price, Category, Image
+- Users can search for items in the menu 
 - All of the information must be entered to move on to the next page
-- Once the restaurant is clicked, it goes to the view page and the user is able to leave the restaurant a review
-- There is a comment section and the Rating section. The Rating is able to go up till 5.
+- Once the restaurant is clicked, it goes to the view page and the user is able to leave the restaurant a review and see the restaurant image or deals
+- There is a Rating section. The Rating is able to go up till 5 and includes a comment.
 
 # Developer Page
     - With a special developer account, the user has control over more of the site
