@@ -18,6 +18,15 @@ function RestaurantView() {
     const [reviewsData, setReviewsData] = useState([]);
     const [review_id, setReview_id] = useState('');
 
+    const [renderReview, setRenderReview] = useState(false);
+    useEffect(() => {
+        const id = localStorage.getItem('userid');
+        if (id === null) {
+            setRenderReview(false);
+        } else {
+            setRenderReview(true)
+        }
+    }, []);
   
     useEffect(() => {
         const fetchRestaurantData = async () => {
@@ -115,10 +124,12 @@ function RestaurantView() {
             </div>
             
             <div className="container-wrapper">
-            <ReviewForm restaurantId={id} />
+                {renderReview === true && (
+                    <ReviewForm restaurantId={id} />
+                )}
                 <div>
-                {error && <div>{error}</div>}
-                <RestaurantReview reviews={reviewsData} />
+                    {error && <div>{error}</div>}
+                    <RestaurantReview reviews={reviewsData} />
                 </div>
                 <div className="deals-container">
                     {dealsData.map((deal, index) => (
@@ -130,15 +141,6 @@ function RestaurantView() {
                             description={deal.description}
                         />
                     ))}
-                    <div className="delete-review-container">
-                    <input 
-                        type="text"
-                        placeholder="Enter review ID to delete"
-                        value={review_id}
-                        onChange={e => setReview_id(e.target.value)}
-                    />
-                    <button onClick={handleDeleteReview}>Delete Review</button>
-                </div>
                 </div>
             </div>
         </div>

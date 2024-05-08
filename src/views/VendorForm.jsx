@@ -18,6 +18,17 @@ const VendorForm = () => {
     const [message, setMessage] = useState('');
 
     const navigate = useNavigate();
+    
+    const [redirect, setRedirect] = useState(true);
+    useEffect(() => {
+        const id = localStorage.getItem('userid');
+        if (id === null) {
+            navigate('/home');
+            setRedirect(true);
+        } else {
+            setRedirect(false)
+        }
+    }, [navigate]);
 
 
     useEffect(() => {
@@ -56,53 +67,56 @@ const VendorForm = () => {
         setFormVisible(!formVisible)
     }
 
-
-    return (
-        <>
-        <SettingNav />
-        <div className="vendor-container">
-            {/* Sidebar */}
-            <div className="sidebar">
-                <div className="sidebar-header">
-                    <h3>Options</h3>
-                </div>
-                <div className="options-box" onClick={showFormRender}>
-                    <h4 className='select-none'>Create Restaurant</h4>
-                </div>
-                {formVisible && (
-                    <div className='max-h-[21rem] overflow-y-scroll'>
-                        <RestaurantEntry userId={userId} onCreateRestaurant={handleCreateRestaurant} />
+    if (!redirect) {
+        return (
+            <>
+            <SettingNav />
+            <div className="vendor-container">
+                {/* Sidebar */}
+                <div className="sidebar">
+                    <div className="sidebar-header">
+                        <h3>Options</h3>
                     </div>
-                )}
-            </div>
-            {/* Main Content */}
-            <div className="main-content">
-                {message && <p>{message}</p>}
-                <div className="centered-restaurant-boxes">
-                    <div className="restaurant-row">
-                    <h2>Active Restaurants</h2>
-                        {/* {arrayifyRestaurantsObject().map((item, index) => {
-                            if (userId === formData[item].owner_id) {
-                                return (
-                                    <MyRestaurantCard
-                                        key={index}
-                                        restaurant={formData[item]}
-                                    />
-                                );
-                            }
-                        return null; 
-                    })} */}
+                    <div className="options-box" onClick={showFormRender}>
+                        <h4 className='select-none'>Create Restaurant</h4>
+                    </div>
+                    {formVisible && (
+                        <div className='max-h-[21rem] overflow-y-scroll'>
+                            <RestaurantEntry userId={userId} onCreateRestaurant={handleCreateRestaurant} />
+                        </div>
+                    )}
+                </div>
+                {/* Main Content */}
+                <div className="main-content">
+                    {message && <p>{message}</p>}
+                    <div className="centered-restaurant-boxes">
                         <div className="restaurant-row">
-                            {Object.values(formData).filter(restaurant => restaurant.owner_id === userId).map((restaurant, index) => (
-                                <MyRestaurantCard key={index} restaurantInfo={restaurant} />
-                            ))}
+                        <h2>Active Restaurants</h2>
+                            {/* {arrayifyRestaurantsObject().map((item, index) => {
+                                if (userId === formData[item].owner_id) {
+                                    return (
+                                        <MyRestaurantCard
+                                            key={index}
+                                            restaurant={formData[item]}
+                                        />
+                                    );
+                                }
+                            return null; 
+                        })} */}
+                            <div className="restaurant-row">
+                                {Object.values(formData).filter(restaurant => restaurant.owner_id === userId).map((restaurant, index) => (
+                                    <MyRestaurantCard key={index} restaurantInfo={restaurant} />
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </>
-    );
-};
+            </>
+        );
+    }
 
+    return null;
+};
+ 
 export default VendorForm;

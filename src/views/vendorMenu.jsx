@@ -7,6 +7,7 @@ import '../styling/VendorForm.css';
 import MenuEntry from './MenuEntry.jsx';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import SettingNav from '../Components/setting-nav.jsx';
 
 
 const VendorMenu = () => {
@@ -15,6 +16,16 @@ const VendorMenu = () => {
     const [menuItems, setMenuItems] = useState([]);
     const navigate = useNavigate();
 
+    const [redirect, setRedirect] = useState(true);
+    useEffect(() => {
+        const id = localStorage.getItem('userid');
+        if (id === null) {
+            navigate('/home');
+            setRedirect(true);
+        } else {
+            setRedirect(false)
+        }
+    }, [navigate]);
 
     useEffect(() => {
         const fetchMenuItems = async () => {
@@ -55,33 +66,38 @@ const VendorMenu = () => {
         }
     };
 
-
-    return (
-        <div className="vendor-container">
-            {/* Sidebar */}
-            <div className="sidebar">
-                <div className="sidebar-header">
-                    <h3>Options</h3>
+    if (!redirect) {
+        return (
+            <>
+                <SettingNav />
+                <div className="vendor-container">
+                    {/* Sidebar */}
+                    <div className="sidebar">
+                        <div className="sidebar-header">
+                            <h3>Options</h3>
+                        </div>
+                        {restaurantId && (
+                            <MenuEntry onCreateMenuItem={handleAddMenuItem} restaurantId={restaurantId} />
+                        )}
+                    </div>
+                    {/* Main Content */}
+                    <div className="main-content">
+                        {message && <p>{message}</p>}
+                        <div className="menu-items-container">
+                        {menuItems.length > 0 ? (
+                            menuItems.map((item) => (
+                                <MenuItemCard key={item.id} menuItem={item} onDelete={handleDeleteMenuItem} />
+                                ))
+                            ) : (
+                                <p>No menu items found.</p>
+                            )}
+                        </div>
+                    </div>
                 </div>
-                {restaurantId && (
-                    <MenuEntry onCreateMenuItem={handleAddMenuItem} restaurantId={restaurantId} />
-                )}
-            </div>
-            {/* Main Content */}
-            <div className="main-content">
-                {message && <p>{message}</p>}
-                <div className="menu-items-container">
-                {menuItems.length > 0 ? (
-                    menuItems.map((item) => (
-                        <MenuItemCard key={item.id} menuItem={item} onDelete={handleDeleteMenuItem} />
-                        ))
-                    ) : (
-                        <p>No menu items found.</p>
-                    )}
-                </div>
-            </div>
-        </div>
-    );
+            </>
+        );
+    }
+    return null;
 };
 
 export default VendorMenu;
